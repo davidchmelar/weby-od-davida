@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autoservis Pod Horami – ukázka webu pro autoservis</title>
+<meta name="description" content="Ukázkový jednostránkový web pro autoservis: služby s orientačními cenami, otevírací doba se zvýrazněným dneškem a kontakt. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<!-- Ukázka s vymyšlenou firmou a kontakty: nechceme ji ve výsledcích vyhledávání jako skutečnou firmu -->
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="D.CH Weby od Davida">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://davidchmelar.github.io/vizitka-autoservis.html">
+<meta property="og:title" content="Autoservis Pod Horami – ukázka webu pro autoservis">
+<meta property="og:description" content="Ukázkový jednostránkový web pro autoservis: služby s orientačními cenami, otevírací doba se zvýrazněným dneškem a kontakt. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<meta property="og:image" content="https://davidchmelar.github.io/img/autoservis-desktop.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="600">
+<meta property="og:locale" content="cs_CZ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800;125,900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Ukázka „Vizitka“ pro autoservis: moderní tmavá jedna stránka jako showroom.
+   Půlnoční modrá, signální žlutá jen na akce a čísla. Záměrně jeden tmavý vzhled. */
+:root{
+  --bg:#0B1220;
+  --bg-2:#0F1829;
+  --surface:#131E33;
+  --ink:#EEF2F8;
+  --muted:#93A0B7;
+  --line:#22304A;
+  --signal:#F5C02B;
+  --signal-ink:#14110A;
+  --ok:#3DD68C;
+  --font-display:"Archivo", "Arial Black", system-ui, sans-serif;
+  --font-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:16.5px; line-height:1.6; padding:0 20px; overflow-x:hidden}
+.wrap{max-width:1120px; margin:0 auto}
+h1,h2,h3{font-family:var(--font-display); font-stretch:112%; font-weight:800; line-height:1; margin:0; text-wrap:balance; letter-spacing:-.01em}
+p{margin:0}
+.label{font-size:.74rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--signal)}
+.muted{color:var(--muted)}
+a:focus-visible, button:focus-visible{outline:2px solid var(--signal); outline-offset:3px}
+
+/* Hlavička */
+.top{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding-block:22px}
+.brand{display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-stretch:125%; font-weight:900; font-size:1rem; letter-spacing:.06em; text-transform:uppercase}
+.brand i{font-style:normal; display:grid; place-items:center; width:40px; height:40px; border-radius:10px; background:var(--signal); color:var(--signal-ink); font-size:.9rem}
+.status{display:inline-flex; align-items:center; gap:10px; font-size:.88rem; font-weight:600; padding:8px 14px; border-radius:999px; background:var(--surface); border:1px solid var(--line)}
+.status::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--muted)}
+.status.open::before{background:var(--ok); box-shadow:0 0 0 4px rgba(61,214,140,.18)}
+
+/* Úvod */
+.hero{position:relative; border-radius:28px; overflow:hidden; padding:64px 48px 56px; background:
+  radial-gradient(80% 90% at 85% 10%, rgba(245,192,43,.16), transparent 60%),
+  linear-gradient(160deg, #13203A, #0B1220 70%); border:1px solid var(--line); display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:40px; align-items:center}
+.hero::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 2px, transparent 2px 22px); pointer-events:none}
+.hero-text{display:grid; gap:24px; position:relative; z-index:1; min-width:0}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem); font-stretch:125%; font-weight:900; text-transform:uppercase; letter-spacing:-.02em}
+.hero h1 span{color:var(--signal)}
+.hero p{font-size:1.12rem; color:var(--muted); max-width:46ch}
+.btns{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.call{display:inline-grid; gap:2px; padding:14px 22px; border-radius:14px; background:var(--signal); color:var(--signal-ink); text-decoration:none}
+.call small{font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase}
+.call b{font-family:var(--font-display); font-stretch:112%; font-size:1.45rem; font-weight:800; font-variant-numeric:tabular-nums; user-select:all}
+.ghost{display:inline-flex; padding:16px 22px; border-radius:14px; border:1px solid var(--line); color:var(--ink); text-decoration:none; font-weight:600}
+.ghost:hover{border-color:var(--signal)}
+
+/* Budík (otáčkoměr) */
+.gauge{position:relative; z-index:1; justify-self:center; width:100%; max-width:340px}
+.gauge svg{display:block; width:100%; height:auto}
+.gauge .needle{transform-origin:150px 150px; transform:rotate(-120deg)}
+@media (prefers-reduced-motion: no-preference){
+  .gauge .needle{animation:rev 2.4s cubic-bezier(.2,.8,.2,1) .3s forwards}
+  @keyframes rev{0%{transform:rotate(-120deg)} 55%{transform:rotate(70deg)} 100%{transform:rotate(25deg)}}
+}
+@media (prefers-reduced-motion: reduce){ .gauge .needle{transform:rotate(25deg)} }
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr; padding:44px 26px}
+  .gauge{max-width:260px}
+}
+
+/* Čísla */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:12px; margin-top:12px}
+.stat{background:var(--bg-2); border:1px solid var(--line); border-radius:18px; padding:20px 22px; display:grid; gap:4px}
+.stat b{font-family:var(--font-display); font-stretch:125%; font-weight:900; font-size:1.9rem; color:var(--signal); line-height:1}
+.stat span{color:var(--muted); font-size:.93rem}
+
+/* Služby */
+.sec{padding-block:88px 0; display:grid; gap:28px}
+.sec-head{display:flex; justify-content:space-between; align-items:end; gap:16px 32px; flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2rem,5vw,3.2rem); text-transform:uppercase; font-stretch:125%; font-weight:900}
+.sec-head p{max-width:40ch}
+.services{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:14px}
+.svc{background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:24px; display:grid; grid-template-columns:auto 1fr; gap:6px 16px; align-items:start; transition:border-color .2s, transform .2s}
+.svc:hover{border-color:var(--signal); transform:translateY(-3px)}
+.svc svg{grid-row:span 3; width:44px; height:44px; padding:10px; border-radius:12px; background:rgba(245,192,43,.12); color:var(--signal)}
+.svc b{font-size:1.12rem; font-weight:700}
+.svc span{color:var(--muted); font-size:.93rem}
+.svc em{font-style:normal; font-family:var(--font-display); font-stretch:112%; font-weight:800; color:var(--ink); font-size:1.15rem; font-variant-numeric:tabular-nums}
+.svc em small{font-family:var(--font-body); font-weight:500; color:var(--muted); font-size:.8rem; margin-right:4px}
+
+/* Otevírací doba a adresa */
+.info{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:14px}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:28px; display:grid; gap:16px; align-content:start}
+.panel h3{font-size:1.4rem; text-transform:uppercase; font-stretch:125%; font-weight:900}
+table{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+td{padding:10px 0; border-bottom:1px solid var(--line)}
+td:last-child{text-align:right; color:var(--muted)}
+tr.today td{color:var(--signal); font-weight:700}
+tr.today td:first-child::after{content:"dnes"; margin-left:10px; font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; background:var(--signal); color:var(--signal-ink); padding:2px 7px; border-radius:999px; vertical-align:middle}
+.addr{display:grid; gap:4px}
+.addr b{font-size:1.15rem}
+.maplink{justify-self:start; display:inline-flex; gap:8px; align-items:center; padding:12px 18px; border-radius:12px; background:var(--signal); color:var(--signal-ink); font-weight:700; text-decoration:none}
+.perks{list-style:none; margin:0; padding:0; display:grid; gap:8px; color:var(--muted)}
+.perks li{display:flex; gap:10px}
+.perks li::before{content:""; flex-shrink:0; width:8px; height:8px; margin-top:.55em; border-radius:2px; background:var(--signal)}
+
+footer{margin-top:64px; border-top:1px solid var(--line); padding-block:22px 36px; display:flex; justify-content:space-between; gap:10px 20px; flex-wrap:wrap; color:var(--muted); font-size:.86rem}
+@media (prefers-reduced-motion: reduce){ .svc{transition:none} .svc:hover{transform:none} }
+</style>
+<style>body{margin:0} img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><i>AP</i>Autoservis Pod Horami</div>
+    <div class="status" id="stav">Po–Pá 7:00–17:00</div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <p class="label">Servis všech značek</p>
+      <h1>Servis, pneu <span>a&nbsp;STK</span> bez čekání</h1>
+      <p>Opravíme osobní auta i&nbsp;malé dodávky. Cenu vám řekneme předem a&nbsp;nic navíc bez domluvy neděláme.</p>
+      <div class="btns">
+        <a class="call" href="#kontakt"><small>Objednávky</small><b>+420&nbsp;777&nbsp;123&nbsp;456</b></a>
+        <a class="ghost" href="#sluzby">Služby a&nbsp;ceny</a>
+      </div>
+    </div>
+    <div class="gauge" aria-hidden="true">
+      <svg viewBox="0 0 300 260">
+        <path d="M40 220 A130 130 0 1 1 260 220" fill="none" stroke="#22304A" stroke-width="14" stroke-linecap="round"/>
+        <path d="M40 220 A130 130 0 1 1 260 220" fill="none" stroke="#F5C02B" stroke-width="14" stroke-linecap="round" stroke-dasharray="520 1000"/>
+        <g stroke="#93A0B7" stroke-width="3" stroke-linecap="round">
+          <line x1="150" y1="38" x2="150" y2="56"/>
+          <line x1="57" y1="76" x2="70" y2="89"/>
+          <line x1="243" y1="76" x2="230" y2="89"/>
+          <line x1="20" y1="150" x2="38" y2="150"/>
+          <line x1="280" y1="150" x2="262" y2="150"/>
+        </g>
+        <g class="needle"><line x1="150" y1="150" x2="150" y2="62" stroke="#EEF2F8" stroke-width="5" stroke-linecap="round"/></g>
+        <circle cx="150" cy="150" r="14" fill="#F5C02B"/>
+        <circle cx="150" cy="150" r="5" fill="#0B1220"/>
+        <text x="150" y="214" text-anchor="middle" fill="#EEF2F8" font-family="Archivo, Arial Black, sans-serif" font-weight="900" font-size="34">1 DEN</text>
+        <text x="150" y="238" text-anchor="middle" fill="#93A0B7" font-family="Instrument Sans, sans-serif" font-size="13" letter-spacing="2">BĚŽNÝ SERVIS</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>15+</b><span>let zkušeností s&nbsp;auty</span></div>
+    <div class="stat"><b>Cena</b><span>vždy předem, bez překvapení</span></div>
+    <div class="stat"><b>Náhradní</b><span>vůz po domluvě zdarma</span></div>
+  </div>
+
+  <section class="sec" id="sluzby">
+    <div class="sec-head">
+      <h2>Co pro vás uděláme</h2>
+      <p class="muted">Orientační ceny za práci. Díly účtujeme zvlášť podle vašeho auta.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 6.5 5 9.5a5 5 0 0 1-10 0C7 9.5 9 7 12 3z"/></svg><b>Výměna oleje a&nbsp;filtrů</b><span>Olej podle předpisu výrobce.</span><em><small>od</small>690&nbsp;Kč</em></div>
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg><b>Přezutí pneumatik</b><span>Včetně vyvážení a&nbsp;uskladnění.</span><em><small>od</small>600&nbsp;Kč</em></div>
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><b>Příprava na STK</b><span>Kontrola a&nbsp;opravy, aby auto prošlo napoprvé.</span><em><small>od</small>900&nbsp;Kč</em></div>
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg><b>Brzdy a&nbsp;podvozek</b><span>Destičky, kotouče, tlumiče, ramena.</span><em>dle domluvy</em></div>
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4M7 11h3l2-3 2 5 1.5-2H17"/></svg><b>Diagnostika závad</b><span>Načtení chyb a&nbsp;zjištění příčiny.</span><em><small>od</small>500&nbsp;Kč</em></div>
+      <div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11"/></svg><b>Plnění klimatizace</b><span>Doplnění chladiva a&nbsp;dezinfekce.</span><em><small>od</small>1&nbsp;200&nbsp;Kč</em></div>
+    </div>
+  </section>
+
+  <section class="sec" id="kontakt">
+    <div class="info">
+      <div class="panel">
+        <h3>Otevírací doba</h3>
+        <table id="hodiny">
+          <tr data-d="1"><td>Pondělí</td><td>7:00–17:00</td></tr>
+          <tr data-d="2"><td>Úterý</td><td>7:00–17:00</td></tr>
+          <tr data-d="3"><td>Středa</td><td>7:00–17:00</td></tr>
+          <tr data-d="4"><td>Čtvrtek</td><td>7:00–17:00</td></tr>
+          <tr data-d="5"><td>Pátek</td><td>7:00–15:00</td></tr>
+          <tr data-d="6"><td>Sobota</td><td>po domluvě</td></tr>
+          <tr data-d="0"><td>Neděle</td><td>zavřeno</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <h3>Kde nás najdete</h3>
+        <div class="addr"><b>Horní 123, 464&nbsp;01 Frýdlant</b><span class="muted">Parkování přímo před dílnou.</span></div>
+        <ul class="perks">
+          <li>Čekárna s&nbsp;kávou a&nbsp;Wi-Fi</li>
+          <li>Platba kartou i&nbsp;převodem</li>
+          <li>E-mail: servis@podhorami.cz</li>
+        </ul>
+        <a class="maplink" href="https://mapy.cz/zakladni?q=Fr%C3%BDdlant" target="_blank" rel="noopener">Otevřít v&nbsp;Mapy.cz →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Autoservis Pod Horami</span>
+    <span>Ukázkový web, firma je vymyšlená</span>
+  </footer>
+</div>
+
+<script>
+// Dnešní den v otevírací době a stav nahoře
+var now = new Date();
+var row = document.querySelector('#hodiny tr[data-d="' + now.getDay() + '"]');
+if (row) {
+  row.className = "today";
+  var hours = row.cells[1].textContent;
+  var stav = document.getElementById("stav");
+  var m = hours.match(/(\d+):(\d+)–(\d+):(\d+)/);
+  var mins = now.getHours() * 60 + now.getMinutes();
+  if (m && mins >= m[1] * 60 + +m[2] && mins < m[3] * 60 + +m[4]) {
+    stav.textContent = "Teď otevřeno · do " + m[3] + ":" + m[4];
+    stav.classList.add("open");
+  } else {
+    stav.textContent = "Dnes: " + hours;
+  }
+}
+</script>
+</body>
+</html>
