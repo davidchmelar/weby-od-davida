@@ -3,7 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Truhlářství U&nbsp;Smrku</title>
+<title>Truhlářství U Smrku – ukázka firemního webu pro truhlářství</title>
+<meta name="description" content="Ukázkový firemní web pro truhlářství s pěti stránkami: služby, realizace s porovnáním před a po, orientační ceník a poptávkový formulář. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<!-- Ukázka s vymyšlenou firmou a kontakty: nechceme ji ve výsledcích vyhledávání jako skutečnou firmu -->
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="D.CH Weby od Davida">
+<meta name="theme-color" content="#17110D">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://davidchmelar.github.io/firemni-web-truhlarstvi.html">
+<meta property="og:title" content="Truhlářství U Smrku – ukázka firemního webu pro truhlářství">
+<meta property="og:description" content="Ukázkový firemní web pro truhlářství s pěti stránkami: služby, realizace s porovnáním před a po, orientační ceník a poptávkový formulář. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<meta property="og:image" content="https://davidchmelar.github.io/img/truhlarstvi-desktop.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="600">
+<meta property="og:locale" content="cs_CZ">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap">
@@ -180,7 +193,8 @@ label{display:grid; gap:6px; font-size:.85rem; font-weight:600; color:var(--mute
 input, textarea, select{font:inherit; font-size:1rem; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:4px; padding:12px 14px; width:100%}
 textarea{min-height:120px; resize:vertical}
 .sent{border:1px solid var(--brass); border-radius:4px; padding:14px 16px; color:var(--ink)}
-.demo{font-size:.8rem; color:var(--muted)}
+.demo{font-size:.88rem; line-height:1.5; color:var(--muted); border-left:2px solid var(--brass); padding-left:12px}
+.demo b{color:var(--ink); font-weight:600}
 
 footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; justify-content:space-between; gap:10px 20px; flex-wrap:wrap; color:var(--muted); font-size:.88rem}
 
@@ -431,8 +445,9 @@ footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; 
         <div><small>Otevřeno</small><b>Po–Pá 7:00–16:00</b></div>
         <div><small>Firma</small><b>Truhlářství U&nbsp;Smrku · IČO 12345678</b></div>
       </div>
-      <form id="poptavka">
+      <form id="poptavka" aria-describedby="f-demo">
         <h3>Poptávka</h3>
+        <p class="demo" id="f-demo"><b>Ukázkový formulář, nic se neodesílá.</b> Na skutečném webu ho napojím na formulářovou službu nebo na server, aby poptávky chodily firmě do <span style="white-space:nowrap">e-mailu</span>.</p>
         <div class="f-row">
           <label for="f-jmeno">Jméno<input id="f-jmeno" name="jmeno" required autocomplete="name"></label>
           <label for="f-kontakt">Telefon nebo e-mail<input id="f-kontakt" name="kontakt" required></label>
@@ -443,9 +458,8 @@ footer{border-top:1px solid var(--line); padding-block:28px 40px; display:flex; 
           </select>
         </label>
         <label for="f-zprava">Popište svou představu<textarea id="f-zprava" name="zprava" placeholder="Rozměry, dřevo, termín…"></textarea></label>
-        <button class="btn main" type="submit">Odeslat poptávku</button>
-        <p class="sent" id="f-ok" hidden>Děkujeme, ozveme se vám do dvou pracovních dnů.</p>
-        <p class="demo">Ukázkový formulář, nic se neodesílá.</p>
+        <button class="btn main" type="submit">Odeslat poptávku (ukázka)</button>
+        <p class="sent" id="f-ok" role="status" hidden>Zpráva nebyla odeslána. Tohle je jen ukázka, jak může formulář vypadat. Formulář zatím není napojený na žádnou službu.</p>
       </form>
     </div>
   </main>
@@ -484,6 +498,13 @@ menuBtn.addEventListener("click", function () {
   var open = header.classList.toggle("open");
   menuBtn.setAttribute("aria-expanded", open);
 });
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && header.classList.contains("open")) {
+    header.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", false);
+    menuBtn.focus();
+  }
+});
 
 // Filtr realizací
 var filterButtons = document.querySelectorAll(".filters button");
@@ -503,7 +524,7 @@ document.querySelectorAll(".ba input").forEach(function (r) {
   });
 });
 
-// Ukázkový formulář
+// Ukázkový formulář: nic se neodesílá, jen se zobrazí vysvětlení
 document.getElementById("poptavka").addEventListener("submit", function (e) {
   e.preventDefault();
   document.getElementById("f-ok").hidden = false;
