@@ -286,6 +286,39 @@ header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45d
 .files b{font-family:ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size:1.05rem; color:var(--accent)}
 
 /* Prémiové doladění */
+/* Co je v ceně, firemní údaje a stránky s podmínkami */
+.scope{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:18px 28px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:22px 24px}
+.scope h3{font-size:1.1rem; margin-bottom:10px; color:var(--ink)}
+.scope ul{list-style:none; margin:0; padding:0; display:grid; gap:7px; color:var(--muted)}
+.scope li{display:flex; gap:10px; align-items:baseline}
+.scope li::before{content:""; flex-shrink:0; width:12px; height:7px; border-left:2px solid var(--accent)}
+.scope p{color:var(--muted)}
+.scope-foot{grid-column:1/-1; border-top:1px solid var(--line); padding-top:14px}
+.scope a, .note a, .legal a, .foot-legal a{font-weight:700; text-decoration:underline; text-underline-offset:3px}
+.foot-legal{grid-column:1/-1; display:grid; gap:2px; font-size:.92rem}
+.legal-links{display:flex; flex-wrap:wrap; gap:0 20px}
+.legal-links a{min-height:40px; display:inline-flex; align-items:center; color:var(--muted)}
+.legal-links a:hover{color:var(--ink)}
+.doplnit{background:#FFE58A; color:#3A2A00; padding:1px 6px; border-radius:4px; font-weight:700; font-style:normal}
+.page-head{display:grid; gap:14px; padding-block:clamp(40px,6vw,64px) 8px}
+.page-head h1{font-size:clamp(2.1rem,5.4vw,3.2rem); font-weight:800; letter-spacing:-.02em; color:var(--spruce)}
+.toc{display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0}
+.toc a{display:inline-flex; align-items:center; min-height:44px; padding:8px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-weight:600; text-decoration:none}
+.toc a:hover{border-color:var(--accent)}
+.legal{display:grid; gap:14px; max-width:780px}
+.legal h3{font-size:1.15rem; color:var(--ink); margin-top:8px}
+.legal p, .legal li, .legal dd{color:var(--muted); line-height:1.65}
+.legal ul, .legal ol{margin:0; padding-left:1.25em; display:grid; gap:6px}
+.legal strong, .legal dt{color:var(--ink)}
+.facts{display:grid; grid-template-columns:max-content 1fr; gap:8px 20px; margin:0; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+.facts dt{font-weight:700}
+.facts dd{margin:0; overflow-wrap:anywhere}
+.facts dd a{display:inline-block; padding-block:10px; margin-block:-10px}
+@media (max-width:520px){ .facts{grid-template-columns:1fr; gap:2px} .facts dd{margin-bottom:10px} }
+.cases{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:12px}
+.case{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 18px; display:grid; gap:8px; align-content:start}
+.case b{color:var(--ink)}
+.case p{font-size:.97rem}
 .skip{position:absolute; left:16px; top:-60px; z-index:50; background:var(--accent); color:var(--accent-ink); font-weight:700; padding:10px 16px; border-radius:8px; text-decoration:none}
 .skip:focus{top:12px}
 h2{font-size:clamp(1.8rem,4.4vw,2.6rem); font-weight:800; letter-spacing:-.015em; color:var(--spruce);max-width:24ch;}
