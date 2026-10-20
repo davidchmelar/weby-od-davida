@@ -56,7 +56,7 @@ document.querySelectorAll(".card-cta").forEach(function (a) {
   a.addEventListener("click", function () {
     var pkg = a.dataset.package;
     if (vybrano) { vybrano.querySelector("b").textContent = pkg; vybrano.hidden = false; }
-    var text = "Dobrý den, mám zájem o službu: " + pkg + ".";
+    var text = "Dobrý den, mám zájem o službu: " + pkg + ".\n\nFakturační údaje (jméno nebo název firmy, adresa, IČO, pokud ho mám):\n";
     if (mailLink) mailLink.href = "mailto:chmelar.david@outlook.com?subject=" + encodeURIComponent("Poptávka: " + pkg) + "&body=" + encodeURIComponent(text);
     if (waLink) waLink.href = "https://wa.me/420605186878?text=" + encodeURIComponent(text);
   });
