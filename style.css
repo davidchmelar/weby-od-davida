@@ -144,6 +144,8 @@ header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45d
 .pick b{color:var(--spruce)}
 .prices{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:18px; align-items:start; padding-top:8px}
 .price{position:relative; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px 24px; display:grid; gap:12px; align-content:start}
+.price.wide{grid-column:1/-1}
+@media (min-width:760px){ .price.wide{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); column-gap:40px} .price.wide > *{grid-column:1} .price.wide ul{grid-column:2; grid-row:1 / span 4; align-self:center} .price.wide .fine-p{grid-column:2} .price.wide .card-cta{grid-column:2; justify-self:start} }
 .price.top{border:2px solid var(--accent); box-shadow:0 20px 44px -26px rgba(224,162,28,.8)}
 .price h3{font-size:1.35rem}
 .was{display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:.9rem; color:var(--muted); font-variant-numeric:tabular-nums}

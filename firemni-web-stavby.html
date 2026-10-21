@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stavby Kořínek – ukázka firemního webu pro stavební firmu</title>
+<meta name="description" content="Ukázkový firemní web na pět stránek pro stavební firmu: služby, realizace, o firmě a kontakt s poptávkou. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<!-- Ukázka s vymyšlenou firmou a kontakty: nechceme ji ve výsledcích vyhledávání jako skutečnou firmu -->
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="D.CH Weby od Davida">
+<meta name="theme-color" content="#0F2A47">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dchweby.cz/firemni-web-stavby.html">
+<meta property="og:title" content="Stavby Kořínek – ukázka firemního webu pro stavební firmu">
+<meta property="og:description" content="Ukázkový firemní web na pět stránek pro stavební firmu. Vzorový projekt D.CH Weby od Davida, firma je vymyšlená.">
+<meta property="og:image" content="https://dchweby.cz/img/stavby-desktop.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="600">
+<meta property="og:locale" content="cs_CZ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Ukázka „Firemní web“ pro stavební firmu.
+   Modrotisk stavebního výkresu: tmavě modrý podklad s rastrem, bílé čáry, betonově šedé plochy.
+   Hlavní prvek: dům nakreslený jako technický výkres v úvodu. Pět stránek v jednom souboru. */
+:root{
+  --blue:#0F2A47;
+  --blue-2:#163A60;
+  --line-w:rgba(255,255,255,.14);
+  --paper:#F2F4F6;
+  --concrete:#DDE2E7;
+  --ink:#0E1B2B;
+  --muted:#556375;
+  --rule:#C9D1DA;
+  --signal:#FFC531;
+  --font:"Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.6; overflow-x:hidden}
+.wrap{max-width:1140px; margin:0 auto; padding:0 22px}
+h1,h2,h3{font-weight:800; line-height:1.05; margin:0; letter-spacing:-.015em; text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button:focus-visible, a:focus-visible{outline:3px solid var(--signal); outline-offset:3px}
+.btn{display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:12px 24px; background:var(--signal); color:var(--ink); font:inherit; font-weight:800; text-decoration:none; border:0; cursor:pointer}
+.btn:hover{background:#FFD45E}
+.btn.line{background:transparent; color:#fff; box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+.btn.line:hover{background:rgba(255,255,255,.08)}
+.blueprint{background-color:var(--blue); color:#fff;
+  background-image:linear-gradient(var(--line-w) 1px, transparent 1px), linear-gradient(90deg, var(--line-w) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:96px 96px, 96px 96px, 24px 24px, 24px 24px}
+
+/* Hlavička */
+header{position:sticky; top:0; z-index:20; background:var(--blue); color:#fff; border-bottom:1px solid rgba(255,255,255,.12)}
+.head{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:72px}
+.brand{display:flex; align-items:center; gap:12px; background:none; border:0; color:#fff; font:inherit; font-weight:900; font-size:1.25rem; letter-spacing:.02em; cursor:pointer; padding:8px 0; min-height:44px}
+.brand svg{width:34px; height:34px}
+.brand small{display:block; font-weight:500; font-size:.75rem; color:#A9BCD3; letter-spacing:0; text-align:left}
+nav{display:flex; align-items:center; gap:2px}
+nav button{font:inherit; font-weight:600; color:#DCE6F2; background:none; border:0; padding:10px 14px; min-height:44px; cursor:pointer; border-bottom:3px solid transparent}
+nav button:hover{color:#fff}
+nav button[aria-current="page"]{color:#fff; border-bottom-color:var(--signal)}
+.menu-btn{display:none; font:inherit; font-weight:700; color:#fff; background:none; border:2px solid rgba(255,255,255,.5); padding:8px 16px; min-height:44px; cursor:pointer}
+@media (max-width:860px){
+  .menu-btn{display:inline-flex; align-items:center}
+  nav{display:none; position:absolute; left:0; right:0; top:100%; flex-direction:column; align-items:stretch; background:var(--blue); padding:6px 22px 16px; border-bottom:1px solid rgba(255,255,255,.12)}
+  header.open nav{display:flex}
+  nav button{text-align:left; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.12)}
+  nav button[aria-current="page"]{border-bottom-color:rgba(255,255,255,.12); color:var(--signal)}
+}
+.page[hidden]{display:none}
+
+/* Úvod s výkresem domu */
+.hero{padding-block:clamp(48px,7vw,88px)}
+.hero-in{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(28px,5vw,64px); align-items:center}
+.hero-text{display:grid; gap:22px; justify-items:start}
+.hero h1{font-size:clamp(2.4rem,5vw,3.9rem)}
+.hero .lead{font-size:1.14rem; color:#C8D6E6; max-width:44ch}
+.actions{display:flex; flex-wrap:wrap; gap:12px}
+.drawing{width:100%; height:auto; display:block}
+.drawing .l{stroke:#fff; fill:none; stroke-width:2}
+.drawing .t{stroke:#fff; fill:none; stroke-width:1; opacity:.55}
+.drawing text{fill:#C8D6E6; font-family:var(--font); font-size:13px}
+.drawing .y{stroke:var(--signal); stroke-width:2; fill:none}
+.stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:clamp(36px,5vw,56px); border-top:1px solid rgba(255,255,255,.25)}
+.stats div{padding:18px 18px 0 0}
+.stats div + div{padding-left:18px; border-left:1px solid rgba(255,255,255,.25)}
+.stats b{display:block; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; line-height:1}
+.stats span{color:#C8D6E6; font-size:.95rem}
+@media (max-width:860px){ .hero-in{grid-template-columns:1fr} }
+@media (max-width:520px){ .stats{grid-template-columns:1fr} .stats div, .stats div + div{padding:14px 0; border-left:0; border-bottom:1px solid rgba(255,255,255,.18)} }
+
+/* Obecné části */
+.sec{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid; gap:12px; max-width:680px; margin-bottom:clamp(28px,4vw,44px)}
+.sec-head h1, .sec-head h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+.sec-head p{color:var(--muted); font-size:1.1rem}
+
+.services{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:2px solid var(--ink)}
+.service{padding:26px 24px 30px 0; display:grid; gap:10px; align-content:start; border-bottom:1px solid var(--rule)}
+.service:nth-child(3n+2), .service:nth-child(3n){padding-left:24px; border-left:1px solid var(--rule)}
+.service svg{width:44px; height:44px; color:var(--blue-2)}
+.service h3{font-size:1.4rem}
+.service p{color:var(--muted)}
+@media (max-width:860px){ .services{grid-template-columns:1fr} .service, .service:nth-child(3n+2), .service:nth-child(3n){padding:22px 0; border-left:0} }
+
+.process{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; counter-reset:k}
+.process li{counter-increment:k; background:#fff; border:1px solid var(--rule); padding:22px; display:grid; gap:8px; align-content:start}
+.process li::before{content:counter(k); font-weight:900; font-size:1.6rem; color:var(--blue-2); line-height:1}
+.process b{font-size:1.1rem}
+.process span{color:var(--muted)}
+@media (max-width:900px){ .process{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:520px){ .process{grid-template-columns:1fr} }
+
+/* Realizace */
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+.filters button{font:inherit; font-weight:600; min-height:44px; padding:8px 18px; background:#fff; border:1px solid var(--rule); color:var(--ink); cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--blue); color:#fff; border-color:var(--blue)}
+.projects{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+.project{background:#fff; border:1px solid var(--rule); display:grid; align-content:start}
+.project[hidden]{display:none}
+.project svg{display:block; width:100%; height:auto; background:var(--blue)}
+.project .body{padding:18px 20px 22px; display:grid; gap:8px}
+.project h3{font-size:1.2rem}
+.project p{color:var(--muted); font-size:.95rem}
+.project dl{display:grid; grid-template-columns:auto 1fr; gap:2px 12px; margin:6px 0 0; font-size:.92rem}
+.project dt{color:var(--muted)}
+.project dd{margin:0; font-weight:600}
+@media (max-width:900px){ .projects{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .projects{grid-template-columns:1fr} }
+
+/* O nás */
+.about{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:clamp(28px,5vw,64px); align-items:start}
+.about p + p{margin-top:14px}
+.about .text p{color:var(--muted); font-size:1.08rem}
+.facts{background:#fff; border:1px solid var(--rule); padding:24px; display:grid; gap:16px}
+.facts div{display:grid; gap:2px; border-bottom:1px solid var(--rule); padding-bottom:14px}
+.facts div:last-child{border-bottom:0; padding-bottom:0}
+.facts span{color:var(--muted); font-size:.92rem}
+.facts b{font-size:1.1rem}
+@media (max-width:860px){ .about{grid-template-columns:1fr} }
+
+/* Kontakt */
+.contact{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px}
+.contact > div{padding:clamp(22px,4vw,36px); display:grid; gap:16px; align-content:start}
+.contact .white{background:#fff; border:1px solid var(--rule)}
+.contact h2{font-size:1.8rem}
+.cline{display:grid; gap:2px}
+.cline span{color:var(--muted); font-size:.92rem}
+.contact .blueprint .cline span{color:#C8D6E6}
+.cline b{font-size:1.15rem}
+.contact ul{margin:0; padding-left:1.2em; display:grid; gap:6px; color:#C8D6E6}
+@media (max-width:860px){ .contact{grid-template-columns:1fr} }
+
+.toast{position:fixed; left:50%; bottom:22px; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:var(--ink); color:#fff; padding:12px 18px; font-size:.95rem; max-width:calc(100% - 32px); transition:opacity .2s, transform .2s; z-index:40}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+footer{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; padding-block:26px 40px; color:var(--muted); font-size:.92rem; border-top:1px solid var(--rule)}
+
+@media (prefers-reduced-motion: no-preference){
+  .drawing .draw{stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 2.2s ease-out .2s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap head">
+    <button class="brand" type="button" data-go="uvod" aria-label="Stavby Kořínek, úvod">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M3 31V15L17 4l14 11v16H3z" fill="none" stroke="#FFC531" stroke-width="3"/><path d="M12 31v-9h10v9" fill="none" stroke="#fff" stroke-width="3"/></svg>
+      <span>STAVBY KOŘÍNEK<small>rodinné domy a&nbsp;rekonstrukce</small></span>
+    </button>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav id="menu" aria-label="Hlavní menu">
+      <button type="button" data-page="uvod">Úvod</button>
+      <button type="button" data-page="sluzby">Služby</button>
+      <button type="button" data-page="realizace">Realizace</button>
+      <button type="button" data-page="o-nas">O&nbsp;nás</button>
+      <button type="button" data-page="kontakt">Kontakt</button>
+    </nav>
+  </div>
+</header>
+
+<!-- 1. Úvod -->
+<main class="page" id="uvod">
+  <div class="blueprint hero">
+    <div class="wrap">
+      <div class="hero-in">
+        <div class="hero-text">
+          <h1>Postavíme dům, ve kterém budete chtít zůstat</h1>
+          <p class="lead">Rodinné domy na klíč, hrubé stavby a&nbsp;rekonstrukce v&nbsp;Libereckém kraji. Pevná cena ve smlouvě a&nbsp;jeden stavbyvedoucí od základů po předání klíčů.</p>
+          <div class="actions">
+            <button class="btn" type="button" data-go="kontakt">Nezávazná poptávka</button>
+            <button class="btn line" type="button" data-go="realizace">Naše realizace</button>
+          </div>
+        </div>
+        <svg class="drawing" viewBox="0 0 520 380" role="img" aria-label="Technický výkres rodinného domu se sedlovou střechou, rozměry 12 × 9 metrů">
+          <path class="t" d="M40 330H500"/>
+          <path class="l draw" d="M90 330V170L260 60L430 170V330Z"/>
+          <path class="l draw" d="M70 182L260 50L450 182"/>
+          <path class="l draw" d="M130 330V250H190V330"/>
+          <path class="l draw" d="M240 200H310V260H240ZM275 200V260M240 230H310"/>
+          <path class="l draw" d="M340 200H400V260H340ZM370 200V260M340 230H400"/>
+          <path class="l draw" d="M330 99V70H360V119"/>
+          <path class="t" d="M90 350H430M90 344V356M430 344V356"/>
+          <text x="245" y="370">12,0 m</text>
+          <path class="t" d="M470 60V330M464 60H476M464 330H476"/>
+          <text x="478" y="200">9,0 m</text>
+          <path class="y" d="M196 290L205 299L222 280"/>
+          <text x="40" y="34">Rodinný dům 5+kk, sedlová střecha</text>
+        </svg>
+      </div>
+      <div class="stats">
+        <div><b>25&nbsp;let</b><span>stavíme v&nbsp;regionu</span></div>
+        <div><b>140+</b><span>dokončených staveb</span></div>
+        <div><b>Pevná cena</b><span>sjednaná ve smlouvě</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap sec">
+    <div class="sec-head">
+      <h2>Jak stavba probíhá</h2>
+      <p>Od první schůzky po předání klíčů víte, co se děje a&nbsp;kolik to stojí.</p>
+    </div>
+    <ol class="process">
+      <li><b>Schůzka na pozemku</b><span>Probereme vaši představu, pozemek a&nbsp;rozpočet. Zdarma a&nbsp;nezávazně.</span></li>
+      <li><b>Rozpočet a&nbsp;smlouva</b><span>Připravíme podrobný rozpočet. Cenu i&nbsp;termíny zapíšeme do smlouvy.</span></li>
+      <li><b>Stavba</b><span>Jeden stavbyvedoucí vás každý týden informuje, jak stavba postupuje.</span></li>
+      <li><b>Předání</b><span>Dům společně projdeme, sepíšeme protokol a&nbsp;předáme klíče.</span></li>
+    </ol>
+  </div>
+</main>
+
+<!-- 2. Služby -->
+<main class="page" id="sluzby" hidden>
+  <div class="wrap sec">
+    <div class="sec-head">
+      <h1>Služby</h1>
+      <p>Postavíme celý dům, nebo jen tu část, kterou potřebujete.</p>
+    </div>
+    <div class="services">
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 40V19L22 6l17 13v21H5z"/><path d="M17 40V28h10v12"/></svg><h3>Domy na klíč</h3><p>Od základové desky po malování. Vy si vyberete projekt a&nbsp;materiály, my se postaráme o&nbsp;zbytek.</p></div>
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 40h34M8 40V14h28v26M8 22h28M8 30h28M20 14v26"/></svg><h3>Hrubé stavby</h3><p>Základy, zdivo, stropy a&nbsp;střecha. Dokončení si pak můžete udělat sami nebo s&nbsp;jinou firmou.</p></div>
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M8 36L32 12M26 8l10 10M6 38l6-2-4-4z"/></svg><h3>Rekonstrukce</h3><p>Rekonstrukce bytů a&nbsp;domů, nové rozvody, koupelny a&nbsp;podlahy, i&nbsp;za provozu domácnosti.</p></div>
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 10h32v26H6z"/><path d="M6 18h32M6 26h32M14 10v26M24 10v26M32 10v26"/></svg><h3>Zateplení</h3><p>Zateplení fasád a&nbsp;střech, které sníží účty za topení. Pomůžeme i&nbsp;s&nbsp;dotací.</p></div>
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 8h32v28H6z"/><path d="M6 22h32M22 8v28"/></svg><h3>Sádrokartony</h3><p>Příčky, podhledy a&nbsp;půdní vestavby. Rychle, čistě a&nbsp;bez mokrých procesů.</p></div>
+      <div class="service"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 16l18-8 18 8-18 8z"/><path d="M4 24l18 8 18-8M4 32l18 8 18-8"/></svg><h3>Zámková dlažba</h3><p>Příjezdové cesty, terasy a&nbsp;chodníky včetně podkladu a&nbsp;odvodnění.</p></div>
+    </div>
+  </div>
+</main>
+
+<!-- 3. Realizace -->
+<main class="page" id="realizace" hidden>
+  <div class="wrap sec">
+    <div class="sec-head">
+      <h1>Realizace</h1>
+      <p>Výběr staveb z&nbsp;posledních let.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrovat realizace">
+      <button type="button" data-f="vse" aria-pressed="true">Vše</button>
+      <button type="button" data-f="dum" aria-pressed="false">Domy</button>
+      <button type="button" data-f="rek" aria-pressed="false">Rekonstrukce</button>
+      <button type="button" data-f="ven" aria-pressed="false">Venkovní úpravy</button>
+    </div>
+    <div class="projects">
+      <article class="project" data-cat="dum">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M70 140V80l80-50 80 50v60z" fill="none" stroke="#fff" stroke-width="2"/><path d="M130 140v-34h40v34" fill="none" stroke="#FFC531" stroke-width="2"/></svg>
+        <div class="body"><h3>Rodinný dům, Hrádek nad Nisou</h3><p>Dům na klíč z&nbsp;keramických tvárnic se zateplenou fasádou.</p><dl><dt>Plocha</dt><dd>142 m²</dd><dt>Doba stavby</dt><dd>9 měsíců</dd></dl></div>
+      </article>
+      <article class="project" data-cat="rek">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M60 140V40h180v100z" fill="none" stroke="#fff" stroke-width="2"/><path d="M60 90h180M150 40v100" fill="none" stroke="#fff" stroke-width="1" opacity=".5"/><path d="M90 120l40-40M110 120l40-40" fill="none" stroke="#FFC531" stroke-width="2"/></svg>
+        <div class="body"><h3>Rekonstrukce bytu 3+1, Liberec</h3><p>Nové rozvody, koupelna, kuchyň a&nbsp;podlahy v&nbsp;panelovém domě.</p><dl><dt>Plocha</dt><dd>74 m²</dd><dt>Doba</dt><dd>7 týdnů</dd></dl></div>
+      </article>
+      <article class="project" data-cat="ven">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M30 130l120-60 120 60" fill="none" stroke="#fff" stroke-width="2"/><path d="M70 110h160M50 120h200" fill="none" stroke="#FFC531" stroke-width="2"/></svg>
+        <div class="body"><h3>Příjezdová cesta a&nbsp;terasa, Chrastava</h3><p>Zámková dlažba s&nbsp;odvodněním a&nbsp;obrubníky.</p><dl><dt>Plocha</dt><dd>96 m²</dd><dt>Doba</dt><dd>2 týdny</dd></dl></div>
+      </article>
+      <article class="project" data-cat="dum">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M50 140V70h200v70z" fill="none" stroke="#fff" stroke-width="2"/><path d="M40 70h220" fill="none" stroke="#FFC531" stroke-width="3"/><path d="M90 140v-40h40v40M170 95h50v25h-50z" fill="none" stroke="#fff" stroke-width="2"/></svg>
+        <div class="body"><h3>Bungalov s&nbsp;plochou střechou, Mníšek</h3><p>Hrubá stavba, majitelé si dokončovali sami.</p><dl><dt>Plocha</dt><dd>118 m²</dd><dt>Doba stavby</dt><dd>4 měsíce</dd></dl></div>
+      </article>
+      <article class="project" data-cat="rek">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M60 140V70l90-40 90 40v70z" fill="none" stroke="#fff" stroke-width="2"/><path d="M60 70h180" fill="none" stroke="#FFC531" stroke-width="2"/><path d="M60 82h180M60 94h180M60 106h180M60 118h180" fill="none" stroke="#fff" stroke-width="1" opacity=".45"/></svg>
+        <div class="body"><h3>Zateplení domu, Frýdlant</h3><p>Fasáda 16 cm, nová okna a&nbsp;zateplení půdy s&nbsp;dotací.</p><dl><dt>Fasáda</dt><dd>210 m²</dd><dt>Doba</dt><dd>5 týdnů</dd></dl></div>
+      </article>
+      <article class="project" data-cat="rek">
+        <svg viewBox="0 0 300 160" aria-hidden="true"><path d="M60 140l90-100 90 100z" fill="none" stroke="#fff" stroke-width="2"/><path d="M100 140V96h100v44" fill="none" stroke="#FFC531" stroke-width="2"/></svg>
+        <div class="body"><h3>Půdní vestavba, Liberec</h3><p>Dva pokoje a&nbsp;koupelna v&nbsp;podkroví ze sádrokartonu.</p><dl><dt>Plocha</dt><dd>48 m²</dd><dt>Doba</dt><dd>6 týdnů</dd></dl></div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<!-- 4. O nás -->
+<main class="page" id="o-nas" hidden>
+  <div class="wrap sec">
+    <div class="sec-head">
+      <h1>O&nbsp;nás</h1>
+    </div>
+    <div class="about">
+      <div class="text">
+        <p>Stavby Kořínek jsme rodinná firma. Začínal táta s&nbsp;jedním kolegou a&nbsp;míchačkou, dnes nás je dvanáct a&nbsp;stavíme rodinné domy po celém Libereckém kraji.</p>
+        <p>Nebereme víc zakázek, než stihneme pořádně. Proto u&nbsp;nás máte jednoho stavbyvedoucího, který stavbu zná od začátku do konce a&nbsp;kterému můžete kdykoli zavolat.</p>
+        <p>Na všechny práce dáváme záruku podle smlouvy a&nbsp;po předání se k&nbsp;vám rádi vrátíme, když bude něco potřeba.</p>
+      </div>
+      <div class="facts">
+        <div><span>Založeno</span><b>2001</b></div>
+        <div><span>Tým</span><b>12 lidí, vlastní zedníci a&nbsp;tesaři</b></div>
+        <div><span>Kde stavíme</span><b>Liberecký kraj</b></div>
+        <div><span>Firma</span><b>Stavby Kořínek s.r.o., IČO 12345678</b></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- 5. Kontakt -->
+<main class="page" id="kontakt" hidden>
+  <div class="wrap sec">
+    <div class="sec-head">
+      <h1>Kontakt</h1>
+      <p>Napište nám nebo zavolejte. Ozveme se do dvou pracovních dnů a&nbsp;domluvíme schůzku na pozemku.</p>
+    </div>
+    <div class="contact">
+      <div class="white">
+        <h2>Kancelář</h2>
+        <div class="cline"><span>Telefon</span><b>+420&nbsp;736&nbsp;555&nbsp;190</b></div>
+        <div class="cline"><span>E-mail</span><b>info@stavbykorinek.cz</b></div>
+        <div class="cline"><span>Adresa</span><b>Průmyslová 22, 460&nbsp;01 Liberec</b></div>
+        <div class="cline"><span>Kancelář otevřena</span><b>Po–Pá 7:00–15:30</b></div>
+      </div>
+      <div class="blueprint">
+        <h2>Co nám napsat do poptávky</h2>
+        <ul>
+          <li>o&nbsp;jakou stavbu jde a&nbsp;kde je pozemek,</li>
+          <li>jestli už máte projekt,</li>
+          <li>kdy byste chtěli začít,</li>
+          <li>přibližný rozpočet.</li>
+        </ul>
+        <button class="btn" type="button" data-demo="Na skutečném webu se tady otevře e-mail s předvyplněnou poptávkou." style="justify-self:start">Napsat poptávku</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Stavby Kořínek s.r.o.</span>
+    <span>Ukázkový web od D.CH Weby od Davida, firma je vymyšlená.</span>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Přepínání stránek
+var pages = document.querySelectorAll(".page");
+var navButtons = document.querySelectorAll("nav button");
+var header = document.querySelector("header");
+var menuBtn = document.getElementById("menu-btn");
+function setMenu(open) {
+  header.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+}
+function showPage(id, initial) {
+  var target = document.getElementById(id);
+  if (!target || !target.classList.contains("page")) id = "uvod";
+  pages.forEach(function (p) { p.hidden = p.id !== id; });
+  navButtons.forEach(function (b) {
+    if (b.dataset.page === id) b.setAttribute("aria-current", "page");
+    else b.removeAttribute("aria-current");
+  });
+  setMenu(false);
+  if (!initial) history.replaceState(null, "", "#" + id);
+  window.scrollTo(0, 0);
+}
+navButtons.forEach(function (b) { b.addEventListener("click", function () { showPage(b.dataset.page); }); });
+document.querySelectorAll("[data-go]").forEach(function (b) { b.addEventListener("click", function () { showPage(b.dataset.go); }); });
+
+// Mobilní menu
+menuBtn.addEventListener("click", function () { setMenu(!header.classList.contains("open")); });
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && header.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+});
+
+// Filtr realizací
+var filterButtons = document.querySelectorAll(".filters button");
+filterButtons.forEach(function (b) {
+  b.addEventListener("click", function () {
+    filterButtons.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    document.querySelectorAll(".project").forEach(function (p) {
+      p.hidden = b.dataset.f !== "vse" && p.dataset.cat !== b.dataset.f;
+    });
+  });
+});
+
+// Ukázkové tlačítko: na vymyšleném webu nikam nevede
+var toast = document.getElementById("toast"), timer;
+document.querySelectorAll("[data-demo]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    toast.textContent = b.dataset.demo;
+    toast.classList.add("show");
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove("show"); }, 3200);
+  });
+});
+
+showPage(location.hash.slice(1), true);
+</script>
+</body>
+</html>
