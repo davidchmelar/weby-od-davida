@@ -52,12 +52,17 @@ document.querySelectorAll(".copy").forEach(function (btn) {
 var vybrano = document.getElementById("vybrano");
 var mailLink = document.querySelector('.act[href^="mailto:"]');
 var waLink = document.querySelector('.act[href^="https://wa.me/"]');
+function fillService(pkg) {
+  if (!vybrano || !pkg) return;
+  pkg = String(pkg).slice(0, 80);
+  vybrano.querySelector("b").textContent = pkg;
+  vybrano.hidden = false;
+  var text = "Dobrý den, mám zájem o službu: " + pkg + ".\n\nFakturační údaje (jméno nebo název firmy, adresa, IČO, pokud ho mám):\n";
+  if (mailLink) mailLink.href = "mailto:chmelar.david@outlook.com?subject=" + encodeURIComponent("Poptávka: " + pkg) + "&body=" + encodeURIComponent(text);
+  if (waLink) waLink.href = "https://wa.me/420605186878?text=" + encodeURIComponent(text);
+}
+// Tlačítka v ceníku vedou na stránku Kontakt s vybranou službou v adrese (kontakt.html?sluzba=...)
+try { fillService(new URLSearchParams(location.search).get("sluzba")); } catch (e) {}
 document.querySelectorAll(".card-cta").forEach(function (a) {
-  a.addEventListener("click", function () {
-    var pkg = a.dataset.package;
-    if (vybrano) { vybrano.querySelector("b").textContent = pkg; vybrano.hidden = false; }
-    var text = "Dobrý den, mám zájem o službu: " + pkg + ".\n\nFakturační údaje (jméno nebo název firmy, adresa, IČO, pokud ho mám):\n";
-    if (mailLink) mailLink.href = "mailto:chmelar.david@outlook.com?subject=" + encodeURIComponent("Poptávka: " + pkg) + "&body=" + encodeURIComponent(text);
-    if (waLink) waLink.href = "https://wa.me/420605186878?text=" + encodeURIComponent(text);
-  });
+  a.addEventListener("click", function () { fillService(a.dataset.package); });
 });

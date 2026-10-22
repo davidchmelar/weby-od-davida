@@ -321,6 +321,20 @@ header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45d
 .case{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 18px; display:grid; gap:8px; align-content:start}
 .case b{color:var(--ink)}
 .case p{font-size:.97rem}
+/* Samostatné stránky: hlavní nadpis stránky vypadá jako nadpis sekce */
+h1.h2{font-size:clamp(2rem,4.8vw,2.9rem); font-weight:800; letter-spacing:-.015em; color:var(--spruce); max-width:24ch}
+.contact h1.h2{color:var(--band-ink); font-size:clamp(2.2rem,5.4vw,3.2rem)}
+.contact h1.h2 em{font-style:normal; color:var(--accent)}
+#menu a[aria-current="page"]:not(.cta){color:var(--band-ink); background:rgba(255,255,255,.1)}
+.foot-nav a[aria-current="page"]{color:var(--ink); font-weight:700}
+main > .contact:first-child{margin-top:0}
+.mini-prices{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:14px}
+.mini-prices a{display:grid; gap:4px; padding:20px 22px; border:1px solid var(--line); border-radius:14px; background:var(--surface); text-decoration:none}
+.mini-prices a:hover{border-color:var(--accent)}
+.mini-prices b{font-family:var(--font-display); font-size:1.15rem; color:var(--ink)}
+.mini-prices span{color:var(--muted); font-size:.95rem}
+.mini-prices strong{font-family:var(--font-display); font-size:1.7rem; color:var(--spruce); line-height:1.1}
+.more-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
 .skip{position:absolute; left:16px; top:-60px; z-index:50; background:var(--accent); color:var(--accent-ink); font-weight:700; padding:10px 16px; border-radius:8px; text-decoration:none}
 .skip:focus{top:12px}
 h2{font-size:clamp(1.8rem,4.4vw,2.6rem); font-weight:800; letter-spacing:-.015em; color:var(--spruce);max-width:24ch;}
