@@ -352,9 +352,14 @@ section{scroll-margin-top:84px; display:grid; gap:28px;padding-block:clamp(48px,
 footer{color:var(--muted); justify-content:space-between; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:20px 32px; padding-block:40px 32px; border-top:1px solid var(--line); margin-top:8px; font-size:.97rem;}
 .foot-brand{display:grid; gap:6px; align-content:start}
 .foot-brand b{font-family:var(--font-display); color:var(--spruce); font-size:1.1rem}
+.foot-social{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:10px}
+.foot-social span{flex-basis:100%; color:var(--muted); font-weight:700; font-size:.95rem}
+.foot-social a{display:inline-grid; place-items:center; width:52px; height:52px; min-height:52px; border-radius:50%; border:1px solid color-mix(in srgb, var(--ink) 28%, transparent); color:var(--accent); transition:border-color .2s, background .2s, transform .2s}
+.foot-social a:hover{border-color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent); transform:translateY(-2px); text-decoration:none}
+.foot-social svg{width:24px; height:24px}
 .foot-nav, .foot-contact{display:grid; gap:0; align-content:start}
-.foot-nav a, .foot-contact a{color:var(--muted); text-decoration:none; min-height:40px; display:inline-flex; align-items:center; overflow-wrap:anywhere}
-.foot-nav a:hover, .foot-contact a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.foot-nav a, .foot-contact > a{color:var(--muted); text-decoration:none; min-height:40px; display:inline-flex; align-items:center; overflow-wrap:anywhere}
+.foot-nav a:hover, .foot-contact > a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
 .foot-copy{grid-column:1/-1; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line); padding-top:16px}
 @media (prefers-reduced-motion: reduce){ .price, .mcard, .steps li, .perk{transition:none} }
 @media (max-width:520px){
