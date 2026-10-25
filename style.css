@@ -241,6 +241,12 @@ header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45d
 .contact h2{color:var(--band-ink); font-size:clamp(2rem,5vw,3rem)}
 .contact h2 em{font-style:normal; color:var(--accent)}
 .contact .lead{color:var(--band-muted)}
+.socials{display:flex; flex-wrap:wrap; align-items:center; gap:10px}
+.socials span{color:var(--band-muted); font-weight:700; font-size:.95rem; margin-right:4px}
+.socials a{display:inline-grid; place-items:center; width:52px; height:52px; border-radius:50%; border:1px solid color-mix(in srgb, var(--band-ink) 28%, transparent); color:var(--band-ink); text-decoration:none; transition:border-color .2s, background .2s, transform .2s}
+.socials a:hover{border-color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent)}
+.socials svg{width:24px; height:24px; color:var(--accent)}
+.socials a:hover{transform:translateY(-2px)}
 .cards{display:grid; gap:12px}
 .ccard{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:16px 18px; display:grid; grid-template-columns:auto auto 1fr; gap:6px 10px; align-items:center}
 .val{font-family:var(--font-display); font-size:clamp(1.05rem,3.6vw,1.35rem); font-weight:700; user-select:all; overflow-wrap:anywhere}
