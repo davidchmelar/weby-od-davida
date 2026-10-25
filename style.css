@@ -134,6 +134,7 @@ header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45d
 .shot{display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top}
 .work-meta{display:flex; justify-content:space-between; align-items:center; gap:8px 16px; flex-wrap:wrap; margin-top:4px}
 .work h3{font-size:1.3rem}
+.tag.real{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
 .work p{color:var(--muted)}
 .more:hover{text-decoration:underline; text-underline-offset:4px}
 
