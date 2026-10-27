@@ -66,3 +66,34 @@ try { fillService(new URLSearchParams(location.search).get("sluzba")); } catch (
 document.querySelectorAll(".card-cta").forEach(function (a) {
   a.addEventListener("click", function () { fillService(a.dataset.package); });
 });
+
+// Menší hlavička při posunu a plynulé zobrazení sekcí
+(function () {
+  var hdr = document.querySelector("header");
+  var small = false;
+  function onScroll() {
+    var y = window.scrollY;
+    if (!small && y > 60) { small = true; hdr.classList.add("small"); }
+    else if (small && y < 20) { small = false; hdr.classList.remove("small"); }
+  }
+  if (hdr) { window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+  var vh = window.innerHeight;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add("in");
+      io.unobserve(el);
+      setTimeout(function () { el.classList.remove("reveal", "in"); }, 1400);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".perk, .why > div, .work, .mini-prices a, .steps li, .about, .price, .mcard, .cta-in, .info, .case").forEach(function (el) {
+    if (el.getBoundingClientRect().top < vh) return;
+    var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+    el.style.setProperty("--d", Math.min(idx, 3) * 0.08 + "s");
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+})();

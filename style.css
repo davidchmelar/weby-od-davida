@@ -374,3 +374,48 @@ footer{color:var(--muted); justify-content:space-between; display:grid; grid-tem
 .combo .card-cta{grid-column:1/-1; justify-self:start}
 .chosen{background:rgba(255,255,255,.08); border:1px solid var(--accent); border-radius:10px; padding:10px 14px; color:var(--band-ink)}
 .chosen b{color:var(--accent)}
+
+/* Vylepšení vzhledu */
+:root{--bg2:#E8EDE7}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg2:#0B120F}}
+:root[data-theme="dark"]{--bg2:#0B120F}
+header{transition:padding .2s, box-shadow .2s}
+.logo-badge img{transition:height .2s}
+header.small{padding-block:6px; box-shadow:0 10px 26px -18px rgba(0,0,0,.7)}
+header.small .logo-badge img{height:46px}
+@media (max-width:420px){header.small .logo-badge img{height:40px}}
+.hero::after, .contact::after, .cta-band::after{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.075) 1.5px, transparent 1.5px); background-size:28px 28px; -webkit-mask-image:linear-gradient(100deg,transparent 0,#000 35%,#000 65%,transparent 100%); mask-image:linear-gradient(100deg,transparent 0,#000 35%,#000 65%,transparent 100%); pointer-events:none}
+.hero-in, .contact-in, .cta-in{position:relative; z-index:1}
+.work{display:flex; flex-direction:column; gap:12px}
+.work-meta{display:flex; flex-direction:column; align-items:flex-start; gap:8px; margin-top:4px}
+.work .more{margin-top:auto; padding-top:4px}
+.shot{transition:transform .5s ease}
+.work:hover .shot{transform:scale(1.035)}
+.work:hover .frame{box-shadow:0 28px 52px -24px rgba(10,30,20,.7)}
+.mini-prices a{transition:transform .2s, border-color .2s, box-shadow .2s}
+.mini-prices a:hover{transform:translateY(-3px); box-shadow:0 18px 36px -24px rgba(10,30,20,.55)}
+#o-mne, #postup{background:var(--bg2); box-shadow:0 0 0 100vmax var(--bg2); clip-path:inset(0 -100vmax)}
+.about{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:clamp(28px,5vw,64px); align-items:center}
+.about-photo{position:relative; justify-self:center; width:100%; max-width:340px}
+.about-photo::before{content:""; position:absolute; inset:14px -14px -14px 14px; border:2px solid var(--accent); border-radius:22px}
+.about-photo img{position:relative; display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:22px; box-shadow:0 30px 60px -30px rgba(10,30,20,.7)}
+.about-text{display:grid; gap:16px}
+.about-text h2{font-size:clamp(1.8rem,4.2vw,2.6rem); color:var(--spruce)}
+.about-text p{color:var(--muted); max-width:56ch}
+.about-text .label{color:var(--muted)}
+.about-facts{list-style:none; margin:6px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px}
+.about-facts li{background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-weight:600; font-size:.95rem}
+@media (max-width:760px){.about{grid-template-columns:1fr} .about-photo{max-width:260px; justify-self:start; margin-right:14px}}
+.cta-band{background:var(--band); color:var(--band-ink); padding-block:64px; position:relative; overflow:hidden}
+.cta-band::before{content:""; position:absolute; right:-10%; top:-60%; width:60%; height:140%; background:radial-gradient(closest-side, rgba(224,162,28,.18), transparent); pointer-events:none}
+.cta-in{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.4fr) auto; gap:28px 40px; align-items:center}
+.cta-in .label{color:var(--band-muted)}
+.cta-in h2{color:var(--band-ink); font-size:clamp(1.8rem,4.4vw,2.7rem); margin:10px 0}
+.cta-in .lead{color:var(--band-muted)}
+.cta-band .btn:not(.main){color:var(--band-ink); border-color:rgba(255,255,255,.35)}
+@media (max-width:820px){.cta-in{grid-template-columns:1fr}}
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; transition-delay:var(--d,0s)}
+.reveal.in{opacity:1; transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1; transform:none; transition:none} .shot, header, .logo-badge img{transition:none} .work:hover .shot{transform:none}}
+.eta{display:flex; align-items:center; gap:8px; margin-top:-4px; font-size:.92rem; font-weight:600; color:var(--spruce)}
+.eta svg{width:17px; height:17px; flex-shrink:0; color:var(--accent)}
