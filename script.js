@@ -58,7 +58,7 @@ function fillService(pkg) {
   vybrano.querySelector("b").textContent = pkg;
   vybrano.hidden = false;
   var text = "Dobrý den, mám zájem o službu: " + pkg + ".\n\nFakturační údaje (jméno nebo název firmy, adresa, IČO, pokud ho mám):\n";
-  if (mailLink) mailLink.href = "mailto:chmelar.david@outlook.com?subject=" + encodeURIComponent("Poptávka: " + pkg) + "&body=" + encodeURIComponent(text);
+  if (mailLink) mailLink.href = "mailto:dchweby@zohomail.eu?subject=" + encodeURIComponent("Poptávka: " + pkg) + "&body=" + encodeURIComponent(text);
   if (waLink) waLink.href = "https://wa.me/420605186878?text=" + encodeURIComponent(text);
 }
 // Tlačítka v ceníku vedou na stránku Kontakt s vybranou službou v adrese (kontakt.html?sluzba=...)
