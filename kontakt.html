@@ -48,13 +48,35 @@
       <div class="logo-big"><img src="img/logo-dch.png" alt="D.CH Weby od Davida" width="800" height="322" loading="lazy"></div>
       <p class="label">Kontakt</p>
       <h1 class="h2">Pojďme se domluvit na <em>vašem novém webu.</em></h1>
-      <p class="chosen" id="vybrano" hidden>Vybraná služba: <b></b>. Tlačítka níže ji rovnou doplní do zprávy.</p>
+      <p class="chosen" id="vybrano" hidden>Vybraná služba: <b></b>. Je už vybraná ve formuláři níže.</p>
       <p class="lead">Napište mi, co děláte, a&nbsp;ozvu se vám s&nbsp;návrhem. Komunikuji písemně, přes e-mail nebo WhatsApp. Odpovídám obvykle do druhého dne a&nbsp;první konzultace je zdarma. Kvůli faktuře mi při objednávce pošlete fakturační údaje: jméno nebo název firmy, adresu a&nbsp;IČO, pokud ho máte.</p>
       <div class="socials"><span>Sledujte mě:</span><a href="https://www.facebook.com/dchweby" target="_blank" rel="noopener" aria-label="Facebook D.CH Weby od Davida" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg></a><a href="https://www.instagram.com/dchweby/" target="_blank" rel="noopener" aria-label="Instagram @dchweby" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a><a href="https://www.linkedin.com/in/dchweby" target="_blank" rel="noopener" aria-label="LinkedIn David Chmelař" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 9h3v11H5zM6.5 3.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.5h.1c.4-.8 1.4-1.7 3-1.7 3.1 0 3.7 2 3.7 4.7V20h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V20H10z"/></svg></a></div>
     </div>
     <div class="cards">
+      <form class="ccard qform" id="poptavka" novalidate>
+        <small>Rychlá poptávka</small>
+        <label>Vaše jméno nebo firma<input name="jmeno" autocomplete="name" required></label>
+        <label>Čím se zabýváte<input name="obor" placeholder="např. truhlářství, kadeřnictví"></label>
+        <label>Co vás zajímá<select name="sluzba" id="f-sluzba">
+          <option value="">Ještě nevím, poraďte mi</option>
+          <option>Jednostránkový web</option>
+          <option>Prezentace do 3 stran</option>
+          <option>Firemní web do 5 stran</option>
+          <option>Úpravy webu</option>
+          <option>Správa firemního profilu na Googlu</option>
+          <option>Měsíční správa webu</option>
+          <option>Kompletní online péče</option>
+        </select></label>
+        <label>Co potřebujete<textarea name="zprava" rows="3" placeholder="Mám web? Mám fotky? Do kdy to potřebuji?" required></textarea></label>
+        <p class="qerr" id="f-chyba" role="alert" hidden>Vyplňte prosím jméno a&nbsp;co potřebujete.</p>
+        <div class="qbtns">
+          <button class="copy" type="submit" data-via="wa">Odeslat přes WhatsApp</button>
+          <button class="act" type="submit" data-via="mail">Odeslat e-mailem</button>
+        </div>
+        <p class="qnote">Otevře se vám WhatsApp nebo e-mail s&nbsp;hotovou zprávou, stačí ji odeslat.</p>
+      </form>
       <div class="ccard"><small>WhatsApp (jen zprávy)</small><span class="val" id="whatsapp">+420&nbsp;605&nbsp;186&nbsp;878</span><button class="copy" type="button" data-target="whatsapp" aria-live="polite">Kopírovat</button><a class="act" href="https://wa.me/420605186878" target="_blank" rel="noopener">Napsat zprávu</a></div>
-      <div class="ccard"><small>E-mail</small><span class="val" id="email">dchweby@<wbr>zohomail.eu</span><button class="copy" type="button" data-target="email" aria-live="polite">Kopírovat</button><a class="act" href="mailto:dchweby@zohomail.eu?subject=Popt%C3%A1vka%20webu">Napsat e-mail</a></div>
+      <div class="ccard"><small>E-mail</small><span class="val" id="email">dchweby@<wbr>gmail.com</span><button class="copy" type="button" data-target="email" aria-live="polite">Kopírovat</button><a class="act" href="mailto:dchweby@gmail.com?subject=Popt%C3%A1vka%20webu">Napsat e-mail</a></div>
     </div>
   </div>
 </div>
@@ -64,11 +86,19 @@
   <footer>
     <div class="foot-brand"><b>D.CH Weby od Davida</b><span>Tvorba webů pro živnostníky, malé firmy a&nbsp;místní služby.</span></div>
     <nav class="foot-nav" aria-label="Odkazy v patičce"><a href="/">Úvod</a><a href="/ukazky">Ukázky</a><a href="/cenik">Ceník</a><a href="/jak-to-probiha">Jak to probíhá</a><a href="/kontakt" aria-current="page">Kontakt</a></nav>
-    <div class="foot-contact"><a href="mailto:dchweby@zohomail.eu">dchweby@zohomail.eu</a><a href="https://wa.me/420605186878" target="_blank" rel="noopener">WhatsApp +420&nbsp;605&nbsp;186&nbsp;878</a><div class="foot-social"><span>Sledujte mě:</span><a href="https://www.facebook.com/dchweby" target="_blank" rel="noopener" aria-label="Facebook D.CH Weby od Davida" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg></a><a href="https://www.instagram.com/dchweby/" target="_blank" rel="noopener" aria-label="Instagram @dchweby" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a><a href="https://www.linkedin.com/in/dchweby" target="_blank" rel="noopener" aria-label="LinkedIn David Chmelař" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 9h3v11H5zM6.5 3.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.5h.1c.4-.8 1.4-1.7 3-1.7 3.1 0 3.7 2 3.7 4.7V20h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V20H10z"/></svg></a></div></div>
+    <div class="foot-contact"><a href="mailto:dchweby@gmail.com">dchweby@gmail.com</a><a href="https://wa.me/420605186878" target="_blank" rel="noopener">WhatsApp +420&nbsp;605&nbsp;186&nbsp;878</a><div class="foot-social"><span>Sledujte mě:</span><a href="https://www.facebook.com/dchweby" target="_blank" rel="noopener" aria-label="Facebook D.CH Weby od Davida" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg></a><a href="https://www.instagram.com/dchweby/" target="_blank" rel="noopener" aria-label="Instagram @dchweby" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a><a href="https://www.linkedin.com/in/dchweby" target="_blank" rel="noopener" aria-label="LinkedIn David Chmelař" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 9h3v11H5zM6.5 3.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.5h.1c.4-.8 1.4-1.7 3-1.7 3.1 0 3.7 2 3.7 4.7V20h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V20H10z"/></svg></a></div></div>
     <div class="foot-legal">
       <p>David Chmelař · IČO 19926456 · Sídlo: č. p. 217, 464&nbsp;01 Dětřichov</p>
       <p>Fyzická osoba zapsaná v&nbsp;živnostenském rejstříku. Nejsem plátce DPH.</p>
       <p class="legal-links"><a href="/podminky">Podmínky spolupráce</a><a href="/podminky#udaje">Firemní údaje</a><a href="/soukromi">Ochrana osobních údajů</a></p>
+    </div>
+    <div class="foot-partners">
+      <span>Partnerské služby</span>
+      <div class="partner-logos">
+        <a href="https://vedos.cz/" target="_blank" rel="sponsored noopener"><img src="img/vedos-hosting.svg" alt="VEDOS Hosting" width="150" height="26" loading="lazy"><small>Doporučený hosting pro váš web</small></a>
+        <a href="https://www.pojisteni.cz/" target="_blank" rel="sponsored noopener"><img src="img/pojisteni.png" alt="POJISTENI.cz" width="140" height="22" loading="lazy"><small>Srovnání pojištění pro firmy</small></a>
+      </div>
+      <p>Odkazy jsou partnerské. Při objednávce můžu získat provizi, vás to nestojí nic navíc.</p>
     </div>
     <p class="foot-copy">© <span id="rok">2026</span> David Chmelař</p>
   </footer>
