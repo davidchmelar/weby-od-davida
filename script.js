@@ -52,14 +52,8 @@ document.querySelectorAll(".copy").forEach(function (btn) {
 var vybrano = document.getElementById("vybrano");
 var mailLink = document.querySelector('.act[href^="mailto:"]');
 var waLink = document.querySelector('.act[href^="https://wa.me/"]');
-var fSluzba = document.getElementById("f-sluzba");
 function fillService(pkg) {
   if (!vybrano || !pkg) return;
-  if (fSluzba) {
-    for (var i = 0; i < fSluzba.options.length; i++) {
-      if (fSluzba.options[i].text === pkg) { fSluzba.selectedIndex = i; break; }
-    }
-  }
   pkg = String(pkg).slice(0, 80);
   vybrano.querySelector("b").textContent = pkg;
   vybrano.hidden = false;
@@ -72,41 +66,6 @@ try { fillService(new URLSearchParams(location.search).get("sluzba")); } catch (
 document.querySelectorAll(".card-cta").forEach(function (a) {
   a.addEventListener("click", function () { fillService(a.dataset.package); });
 });
-
-// Formulář rychlé poptávky: sestaví zprávu a otevře WhatsApp nebo e-mail
-(function () {
-  var form = document.getElementById("poptavka");
-  if (!form) return;
-  var chyba = document.getElementById("f-chyba");
-  var via = "wa";
-  form.querySelectorAll("button[data-via]").forEach(function (b) {
-    b.addEventListener("click", function () { via = b.dataset.via; });
-  });
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var jmeno = form.jmeno.value.trim();
-    var obor = form.obor.value.trim();
-    var sluzba = form.sluzba.value || "Ještě nevím, poraďte mi";
-    var zprava = form.zprava.value.trim();
-    form.jmeno.setAttribute("aria-invalid", jmeno ? "false" : "true");
-    form.zprava.setAttribute("aria-invalid", zprava ? "false" : "true");
-    if (!jmeno || !zprava) {
-      chyba.hidden = false;
-      (jmeno ? form.zprava : form.jmeno).focus();
-      return;
-    }
-    chyba.hidden = true;
-    var text = "Dobrý den, posílám poptávku webu.\n\n" +
-      "Jméno / firma: " + jmeno + "\n" +
-      (obor ? "Obor: " + obor + "\n" : "") +
-      "Služba: " + sluzba + "\n\n" + zprava;
-    if (via === "mail") {
-      location.href = "mailto:dchweby@gmail.com?subject=" + encodeURIComponent("Poptávka webu: " + jmeno) + "&body=" + encodeURIComponent(text);
-    } else {
-      window.open("https://wa.me/420605186878?text=" + encodeURIComponent(text), "_blank", "noopener");
-    }
-  });
-})();
 
 // Menší hlavička při posunu a plynulé zobrazení sekcí
 (function () {
