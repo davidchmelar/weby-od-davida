@@ -56,10 +56,10 @@ header{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; backgroun
 .head{max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px 16px; flex-wrap:wrap}
 .logo{display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:800; font-size:1.15rem; text-decoration:none; color:var(--band-ink)}
 .logo-badge{display:inline-flex; align-items:center}
-.logo-badge img{display:block; height:72px; width:auto}
+.logo-badge img{display:block; height:42px; width:auto}
 .logo-big{justify-self:start}
 .logo-big img{display:block; width:min(380px, 100%); height:auto}
-@media (max-width:420px){ .logo-badge img{height:54px} }
+@media (max-width:420px){ .logo-badge img{height:34px} }
 nav{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
 nav a{color:var(--band-muted); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px; min-height:44px; display:inline-flex; align-items:center}
 nav a:hover{color:var(--band-ink); background:rgba(255,255,255,.06)}
@@ -382,8 +382,8 @@ footer{color:var(--muted); justify-content:space-between; display:grid; grid-tem
 header{transition:padding .2s, box-shadow .2s}
 .logo-badge img{transition:height .2s}
 header.small{padding-block:6px; box-shadow:0 10px 26px -18px rgba(0,0,0,.7)}
-header.small .logo-badge img{height:46px}
-@media (max-width:420px){header.small .logo-badge img{height:40px}}
+header.small .logo-badge img{height:32px}
+@media (max-width:420px){header.small .logo-badge img{height:28px}}
 .hero::after, .contact::after, .cta-band::after{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.075) 1.5px, transparent 1.5px); background-size:28px 28px; -webkit-mask-image:linear-gradient(100deg,transparent 0,#000 35%,#000 65%,transparent 100%); mask-image:linear-gradient(100deg,transparent 0,#000 35%,#000 65%,transparent 100%); pointer-events:none}
 .hero-in, .contact-in, .cta-in{position:relative; z-index:1}
 .work{display:flex; flex-direction:column; gap:12px}
@@ -420,12 +420,34 @@ header.small .logo-badge img{height:46px}
 .eta{display:flex; align-items:center; gap:8px; margin-top:-4px; font-size:.92rem; font-weight:600; color:var(--spruce)}
 .eta svg{width:17px; height:17px; flex-shrink:0; color:var(--accent)}
 
+/* Formulář rychlé poptávky (kontakt) */
+.qform{grid-template-columns:1fr !important; gap:12px}
+.qform label{display:grid; gap:6px; font-weight:600; color:var(--band-ink); font-size:.95rem}
+.qform input, .qform select, .qform textarea{font:inherit; font-size:1rem; width:100%; min-height:46px; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.18); color:var(--band-ink)}
+.qform textarea{resize:vertical; min-height:90px}
+.qform select option{color:#16261E; background:#fff}
+.qform input::placeholder, .qform textarea::placeholder{color:var(--band-muted); opacity:.8}
+.qform input:focus, .qform select:focus, .qform textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+.qform [aria-invalid="true"]{border-color:#F28B6B}
+.qbtns{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr)); gap:10px}
+.qbtns .act{background:transparent; cursor:pointer; justify-content:center; font-family:inherit}
+.qerr{color:#FFB59E; font-weight:600; font-size:.95rem}
+.qnote{color:var(--band-muted); font-size:.88rem}
+
 /* Partnerské služby v patičce */
 .foot-partners{grid-column:1/-1; display:grid; gap:10px; border-top:1px solid var(--line); padding-top:18px}
 .foot-partners > span{font-weight:700; color:var(--ink); font-size:.95rem}
 .partner-logos{display:flex; flex-wrap:wrap; gap:12px}
-.partner-logos a{display:inline-flex; flex-direction:column; align-items:flex-start; gap:8px; padding:14px 18px; min-height:44px; background:#FFFFFF; border:1px solid var(--line); border-radius:12px; text-decoration:none; transition:border-color .2s}
-.partner-logos a:hover{border-color:var(--accent)}
+.partner-logos a{display:inline-flex; flex-direction:column; align-items:flex-start; gap:8px; padding:14px 18px; min-height:44px; background:#FFFFFF; border:1px solid var(--line); border-radius:12px; text-decoration:none; transition:border-color .2s, transform .2s}
+.partner-logos a:hover{border-color:var(--accent); transform:translateY(-2px)}
 .partner-logos img{display:block; height:24px; width:auto}
 .partner-logos small{color:#56665D; font-size:.85rem; font-weight:600}
 .foot-partners p{color:var(--muted); font-size:.85rem}
+
+/* Doporučený hosting v ceníku */
+.partner-box{grid-column:1/-1; display:grid; grid-template-columns:auto 1fr auto; gap:10px 20px; align-items:center; padding:18px 20px; border-radius:14px; border:2px solid var(--accent); background:color-mix(in srgb, var(--accent) 8%, var(--surface))}
+.partner-box > img{height:28px; width:auto; background:#fff; padding:8px 10px; border-radius:8px; box-sizing:content-box}
+.partner-box b{display:block; color:var(--ink); font-size:1.05rem; margin-bottom:4px}
+.partner-box p{color:var(--muted); font-size:.97rem; line-height:1.5}
+.partner-box small{grid-column:1/-1; color:var(--muted); font-size:.85rem}
+@media (max-width:720px){ .partner-box{grid-template-columns:1fr} .partner-box .btn{justify-self:start} }
