@@ -79,20 +79,43 @@ nav a:hover{color:var(--ink); background:var(--soft)}
 #menu a[aria-current="page"]:not(.cta){color:var(--ink); font-weight:600}
 nav a.cta{background:var(--spruce); color:#FFFFFF; font-weight:600; margin-left:10px; padding:0 20px; border-radius:10px}
 nav a.cta:hover{background:var(--spruce-hover); color:#FFFFFF}
-.menu-btn{display:none; font:inherit; font-weight:600; align-items:center; gap:10px; background:var(--surface); color:var(--ink); border:1px solid var(--line-strong); border-radius:10px; padding:9px 14px; min-height:44px; cursor:pointer}
-.menu-btn span{display:grid; gap:4px}
-.menu-btn span i{display:block; width:18px; height:2px; background:currentColor; border-radius:2px; transition:transform .2s, opacity .2s}
-header.open .menu-btn span i:nth-child(1){transform:translateY(6px) rotate(45deg)}
-header.open .menu-btn span i:nth-child(2){opacity:0}
-header.open .menu-btn span i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.menu-btn{display:none; font-size:0; line-height:0; align-items:center; justify-content:center; width:48px; height:48px; padding:0; border:0; border-radius:50%; background:var(--spruce); color:#FFFFFF; cursor:pointer; box-shadow:0 10px 22px -12px rgba(15,61,46,.7); transition:background .2s, transform .2s}
+.menu-btn:hover{background:var(--spruce-hover)}
+.menu-btn:active{transform:scale(.94)}
+.menu-btn span{position:relative; display:block; width:20px; height:12px}
+.menu-btn span i{position:absolute; left:0; display:block; width:20px; height:2px; background:currentColor; border-radius:2px; transition:transform .35s cubic-bezier(.2,.7,.2,1), width .35s cubic-bezier(.2,.7,.2,1), top .35s cubic-bezier(.2,.7,.2,1)}
+.menu-btn span i:nth-child(1){top:0}
+.menu-btn span i:nth-child(2){top:10px; width:13px; left:auto; right:0}
+.menu-btn span i:nth-child(3){display:none}
+header.open .menu-btn span i:nth-child(1){top:5px; transform:rotate(45deg)}
+header.open .menu-btn span i:nth-child(2){top:5px; width:20px; transform:rotate(-45deg)}
+.menu-extra{display:none}
 @media (max-width:820px){
-  .menu-btn{display:inline-flex}
-  nav{display:none; flex-basis:100%; flex-direction:column; align-items:stretch; gap:0; margin-top:6px; border-top:1px solid var(--line)}
-  header.open nav{display:flex}
-  nav a{padding:14px 4px; border-radius:0; border-bottom:1px solid var(--line); font-size:1.08rem; color:var(--ink)}
-  nav a:hover{background:transparent}
-  nav a.cta{margin:14px 0 6px; border-radius:10px; justify-content:center; border:0; min-height:50px}
+  .menu-btn{display:inline-flex; position:relative; z-index:21}
   .logo-badge img{height:30px}
+  header.open{-webkit-backdrop-filter:none; backdrop-filter:none; background:var(--bg)}
+  #menu{position:fixed; z-index:19; left:0; right:0; top:var(--hh,64px); bottom:0; display:flex; flex-direction:column; flex-wrap:nowrap; align-items:stretch; gap:0; margin:0; padding:12px 24px calc(28px + env(safe-area-inset-bottom)); overflow-y:auto; overscroll-behavior:contain;
+    background-color:var(--bg); background-image:radial-gradient(rgba(15,61,46,.09) 1.2px, transparent 1.4px), radial-gradient(ellipse 80% 50% at 100% 100%, rgba(168,213,186,.7), transparent 70%); background-size:24px 24px, auto;
+    counter-reset:m; visibility:hidden; opacity:0; transform:translateY(-14px); transition:opacity .3s ease, transform .4s cubic-bezier(.2,.7,.2,1), visibility 0s linear .4s}
+  header.open #menu{visibility:visible; opacity:1; transform:none; transition:opacity .3s ease, transform .4s cubic-bezier(.2,.7,.2,1), visibility 0s}
+  #menu > a:not(.cta){counter-increment:m; display:flex; align-items:center; gap:16px; padding:20px 2px; border-radius:0; border-bottom:1px solid var(--line); font-family:var(--font-head); font-size:clamp(1.6rem,7vw,2.1rem); font-weight:700; letter-spacing:-.02em; color:var(--ink); background:transparent}
+  #menu > a:not(.cta)::before{content:"0" counter(m); font-family:var(--font); font-size:.8rem; font-weight:600; letter-spacing:.06em; color:var(--label); min-width:22px}
+  #menu > a:not(.cta)::after{content:"→"; margin-left:auto; width:44px; height:44px; flex-shrink:0; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line-strong); font-family:var(--font); font-size:1.05rem; font-weight:600; color:var(--spruce); transition:background .2s, color .2s, transform .2s}
+  #menu > a:not(.cta):hover::after, #menu > a:not(.cta):active::after, #menu > a[aria-current="page"]::after{background:var(--spruce); color:#fff; border-color:var(--spruce); transform:translateX(3px)}
+  #menu > a[aria-current="page"]:not(.cta){color:var(--spruce-hover)}
+  #menu > a.cta{margin:26px 0 0; border-radius:14px; justify-content:center; border:0; min-height:58px; font-size:1.1rem; padding:0 20px}
+  .menu-extra{display:grid; gap:6px; margin-top:auto; padding-top:32px}
+  .menu-extra p{font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--label)}
+  .menu-extra > a{color:var(--ink); font-weight:600; text-decoration:none; min-height:40px; display:inline-flex; align-items:center; padding:0; border-radius:0}
+  .menu-extra .foot-social a{padding:0; border-radius:50%}
+  .menu-extra .foot-social{margin-top:8px}
+  header.open #menu > *{animation:menuIn .55s cubic-bezier(.2,.7,.2,1) both}
+  header.open #menu > :nth-child(1){animation-delay:.05s}
+  header.open #menu > :nth-child(2){animation-delay:.11s}
+  header.open #menu > :nth-child(3){animation-delay:.17s}
+  header.open #menu > :nth-child(4){animation-delay:.23s}
+  header.open #menu > :nth-child(5){animation-delay:.32s}
+  @keyframes menuIn{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
 }
 
 /* Úvod */

@@ -3,7 +3,9 @@
 var header = document.querySelector("header");
 var menuBtn = document.getElementById("menu-btn");
 function setMenu(open) {
+  document.documentElement.style.setProperty("--hh", header.offsetHeight + "px");
   header.classList.toggle("open", open);
+  document.body.style.overflow = open ? "hidden" : "";
   menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
   menuBtn.setAttribute("aria-label", open ? "Zavřít menu" : "Otevřít menu");
 }
