@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Chmelař – odkazy | D.CH Weby od Davida</title>
+<meta name="description" content="Odkazy na web, WhatsApp, e-mail, Facebook, Instagram a LinkedIn – D.CH Weby od Davida.">
+<meta name="theme-color" content="#F9FCF8">
+<link rel="canonical" href="https://dchweby.cz/odkazy">
+<meta property="og:type" content="website">
+<meta property="og:title" content="David Chmelař – D.CH Weby od Davida">
+<meta property="og:description" content="Weby pro firmy, řemeslníky a místní služby. Všechny odkazy na jednom místě.">
+<meta property="og:url" content="https://dchweby.cz/odkazy">
+<meta property="og:image" content="https://dchweby.cz/img/nahled-odkazu.jpg">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/ikona-180.png">
+<link rel="preload" href="fonts/montserrat.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/inter-regular.woff" as="font" type="font/woff" crossorigin>
+<style>
+@font-face{font-family:"Montserrat"; src:url("fonts/montserrat.woff") format("woff"); font-weight:400 800; font-display:swap}
+@font-face{font-family:"Inter"; src:url("fonts/inter-regular.woff") format("woff"); font-weight:400; font-display:swap}
+@font-face{font-family:"Inter"; src:url("fonts/inter-semibold.woff") format("woff"); font-weight:600; font-display:swap}
+@font-face{font-family:"Inter"; src:url("fonts/inter-bold.woff") format("woff"); font-weight:700; font-display:swap}
+:root{
+  --bg:#F9FCF8; --soft:#E6F2EA; --ink:#0F3D2E; --muted:#46604F; --line:#D3E6DA; --line-strong:#A8D5BA;
+  --spruce:#0F3D2E; --spruce-hover:#166534; --mid:#4C956C; --light:#A8D5BA;
+}
+*{box-sizing:border-box}
+html, body{margin:0; min-height:100%}
+body{font-family:"Inter","Segoe UI",system-ui,sans-serif; color:var(--ink); background:var(--soft); -webkit-font-smoothing:antialiased; overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mid); outline-offset:3px}
+
+/* Animované pozadí */
+.bg{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none;
+  background-color:var(--soft); background-image:radial-gradient(rgba(15,61,46,.10) 1.3px, transparent 1.5px); background-size:24px 24px}
+.blob{position:absolute; border-radius:50%; filter:blur(36px)}
+.b1{width:380px; height:380px; left:-120px; top:-80px; background:var(--light); animation:m1 18s ease-in-out infinite alternate}
+.b2{width:320px; height:320px; right:-110px; top:38%; background:var(--mid); opacity:.45; animation:m2 22s ease-in-out infinite alternate}
+.b3{width:300px; height:300px; left:15%; bottom:-140px; background:var(--light); opacity:.9; animation:m3 26s ease-in-out infinite alternate}
+@keyframes m1{to{transform:translate(45vw,120px) scale(1.15)}}
+@keyframes m2{to{transform:translate(-45vw,-90px) scale(1.2)}}
+@keyframes m3{to{transform:translate(30vw,-160px) scale(1.1)}}
+
+/* Obsah */
+.page{max-width:560px; min-height:100svh; align-content:center; margin:0 auto; padding:48px 20px calc(36px + env(safe-area-inset-bottom)); display:grid; gap:26px}
+.top{display:flex; justify-content:space-between; align-items:center}
+.top img{height:26px; width:auto; display:block}
+.share{font:inherit; font-size:.9rem; font-weight:600; display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 16px; border-radius:999px; border:1px solid var(--line-strong); background:rgba(255,255,255,.75); color:var(--ink); cursor:pointer; -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px)}
+.share svg{width:18px; height:18px}
+.share:hover{border-color:var(--spruce)}
+
+.profile{display:grid; justify-items:center; text-align:center; gap:10px}
+.avatar{position:relative; width:112px; height:112px}
+.avatar img{width:100%; height:100%; object-fit:cover; object-position:center 20%; border-radius:50%; border:4px solid #fff; box-shadow:0 16px 34px -18px rgba(15,61,46,.6); display:block}
+.avatar .badge{position:absolute; right:-4px; bottom:-2px; width:40px; height:40px; border-radius:50%; border:3px solid #fff; background:var(--spruce); overflow:hidden; display:block}
+.avatar .badge img{width:100%; height:100%; border:0; border-radius:0; box-shadow:none; object-fit:cover}
+h1{margin:6px 0 0; font-family:"Montserrat",sans-serif; font-weight:800; font-size:1.6rem; letter-spacing:-.02em; line-height:1.15}
+.bio{margin:0; color:var(--muted); font-size:1rem; line-height:1.5; max-width:34ch}
+.status{display:inline-flex; align-items:center; gap:8px; margin-top:4px; padding:6px 12px; border-radius:999px; background:#fff; border:1px solid var(--line); font-size:.85rem; font-weight:600; color:var(--ink)}
+.status i{width:8px; height:8px; border-radius:50%; background:#22A35A; box-shadow:0 0 0 0 rgba(34,163,90,.5); animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(34,163,90,0)} 100%{box-shadow:0 0 0 0 rgba(34,163,90,0)}}
+
+.links{display:grid; gap:12px}
+.link{position:relative; display:grid; grid-template-columns:44px 1fr 24px; align-items:center; gap:14px; min-height:68px; padding:12px 16px 12px 12px; border-radius:20px; border:1px solid var(--line); background:rgba(255,255,255,.88); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); text-decoration:none; box-shadow:0 10px 24px -20px rgba(15,61,46,.6); transition:transform .2s ease, border-color .2s, box-shadow .2s}
+.link:hover{transform:translateY(-2px); border-color:var(--line-strong); box-shadow:0 18px 30px -22px rgba(15,61,46,.7)}
+.link:active{transform:scale(.98)}
+.link .ic{width:44px; height:44px; border-radius:12px; background:var(--soft); color:var(--spruce); display:grid; place-items:center}
+.link .ic svg{width:22px; height:22px}
+.link b{display:block; font-weight:700; font-size:1.02rem; line-height:1.25}
+.link small{display:block; color:var(--muted); font-size:.86rem; margin-top:2px}
+.link .go{width:24px; height:24px; color:var(--mid); transition:transform .2s}
+.link:hover .go{transform:translateX(3px)}
+.link.main{background:var(--spruce); border-color:var(--spruce); color:#fff}
+.link.main .ic{background:rgba(168,213,186,.18); color:var(--light)}
+.link.main small{color:var(--light)}
+.link.main .go{color:var(--light)}
+.link.main:hover{background:var(--spruce-hover)}
+
+.label{margin:6px 0 -2px; font-size:.78rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--spruce-hover)}
+
+.social{display:flex; justify-content:center; gap:12px; flex-wrap:wrap}
+.social a{width:52px; height:52px; border-radius:50%; background:var(--spruce); color:#fff; display:grid; place-items:center; transition:transform .2s, background .2s}
+.social a:hover{transform:translateY(-3px); background:var(--spruce-hover)}
+.social svg{width:22px; height:22px}
+
+.foot{text-align:center; color:var(--muted); font-size:.85rem; display:grid; gap:6px}
+.foot a{font-weight:600; color:var(--spruce)}
+
+.toast{position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom)); transform:translate(-50%,20px); opacity:0; padding:12px 18px; border-radius:12px; background:var(--spruce); color:#fff; font-weight:600; font-size:.95rem; transition:opacity .25s, transform .25s; pointer-events:none}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+
+/* Náběh */
+.page > *{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.links > *{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.page > :nth-child(2){animation-delay:.08s}
+.links > :nth-child(1){animation-delay:.16s} .links > :nth-child(2){animation-delay:.22s} .links > :nth-child(3){animation-delay:.28s}
+.links > :nth-child(4){animation-delay:.34s} .links > :nth-child(5){animation-delay:.40s} .links > :nth-child(6){animation-delay:.46s}
+.links > :nth-child(7){animation-delay:.52s} .links > :nth-child(8){animation-delay:.58s} .links > :nth-child(9){animation-delay:.64s}
+.page > :nth-child(4){animation-delay:.45s}
+@keyframes up{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
+@media (prefers-reduced-motion: reduce){ *, *::before, *::after{animation:none!important; transition:none!important} }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+<main class="page">
+  <div class="top">
+    <a href="/" aria-label="D.CH Weby od Davida – úvodní stránka"><img src="img/logo-dch-znak.svg" alt="D.CH" width="754" height="182"></a>
+    <button class="share" type="button" id="sdilet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Sdílet</button>
+  </div>
+
+  <header class="profile">
+    <div class="avatar">
+      <img src="img/david.jpg" alt="David Chmelař" width="720" height="900">
+      <span class="badge"><img src="img/ikona-64.png" alt="" width="64" height="64"></span>
+    </div>
+    <h1>David Chmelař</h1>
+    <p class="bio">Tvorba webů pro firmy, řemeslníky a&nbsp;místní služby. Cena předem, hotovo do týdne.</p>
+    <span class="status"><i aria-hidden="true"></i>Beru nové zakázky</span>
+  </header>
+
+  <nav class="links" aria-label="Odkazy">
+    <a class="link main" href="/">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
+      <span><b>Web dchweby.cz</b><small>Ukázky, ceník a&nbsp;poptávka</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" href="https://wa.me/420605186878" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path fill="currentColor" d="M9.3 7.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.4s1 2.7 1.1 2.9c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.5z"/></svg></span>
+      <span><b>WhatsApp</b><small>+420&nbsp;605&nbsp;186&nbsp;878</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" href="mailto:dchweby@gmail.com">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+      <span><b>E-mail</b><small>dchweby@gmail.com</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" href="https://www.facebook.com/dchweby" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg></span>
+      <span><b>Facebook</b><small>D.CH Weby od Davida</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" href="https://www.instagram.com/dchweby/" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></span>
+      <span><b>Instagram</b><small>@dchweby</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a class="link" href="https://www.linkedin.com/in/dchweby" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 9h3v11H5zM6.5 3.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.5h.1c.4-.8 1.4-1.7 3-1.7 3.1 0 3.7 2 3.7 4.7V20h-3v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V20H10z"/></svg></span>
+      <span><b>LinkedIn</b><small>David Chmelař</small></span>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </nav>
+
+  <footer class="foot">
+    <span>© <span id="rok">2026</span> David Chmelař · IČO 19926456</span>
+    <a href="/">dchweby.cz</a>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+document.getElementById("rok").textContent = new Date().getFullYear();
+(function () {
+  var btn = document.getElementById("sdilet"), toast = document.getElementById("toast"), t;
+  function show(msg) { toast.textContent = msg; toast.classList.add("show"); clearTimeout(t); t = setTimeout(function () { toast.classList.remove("show"); }, 2200); }
+  btn.addEventListener("click", function () {
+    var url = "https://dchweby.cz/odkazy";
+    if (navigator.share) {
+      navigator.share({ title: "David Chmelař – D.CH Weby od Davida", url: url }).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function () { show("Odkaz zkopírován"); }, function () { show(url); });
+    } else { show(url); }
+  });
+})();
+</script>
+</body>
+</html>
