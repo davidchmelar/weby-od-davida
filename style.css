@@ -28,7 +28,7 @@
   --font:"Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-head:"Montserrat", "Segoe UI", system-ui, sans-serif;
   --radius:16px;
-  --shadow:0 24px 48px -28px rgba(15,61,46,.35);
+  --shadow:0 20px 40px -28px rgba(15,61,46,.25);
   color-scheme:light;
 }
 
@@ -79,7 +79,7 @@ nav a:hover{color:var(--ink); background:var(--soft)}
 #menu a[aria-current="page"]:not(.cta){color:var(--ink); font-weight:600}
 nav a.cta{background:var(--spruce); color:#FFFFFF; font-weight:600; margin-left:10px; padding:0 20px; border-radius:10px}
 nav a.cta:hover{background:var(--spruce-hover); color:#FFFFFF}
-.menu-btn{display:none; font-size:0; line-height:0; align-items:center; justify-content:center; width:48px; height:48px; padding:0; border:0; border-radius:50%; background:var(--spruce); color:#FFFFFF; cursor:pointer; box-shadow:0 10px 22px -12px rgba(15,61,46,.7); transition:background .2s, transform .2s}
+.menu-btn{display:none; font-size:0; line-height:0; align-items:center; justify-content:center; width:48px; height:48px; padding:0; border:0; border-radius:50%; background:var(--spruce); color:#FFFFFF; cursor:pointer; box-shadow:0 8px 18px -12px rgba(15,61,46,.4); transition:background .2s, transform .2s}
 .menu-btn:hover{background:var(--spruce-hover)}
 .menu-btn:active{transform:scale(.94)}
 .menu-btn span{position:relative; display:block; width:20px; height:12px}
@@ -134,12 +134,12 @@ header.open .menu-btn span i:nth-child(2){top:5px; width:20px; transform:rotate(
 .proof span{display:inline-flex; align-items:center; gap:8px}
 .proof svg{width:18px; height:18px; color:#4C956C; flex-shrink:0}
 .devices{position:relative; padding:0 18px 40px 0; min-width:0}
-.browser{border-radius:14px; background:var(--surface); border:1px solid var(--line); box-shadow:0 34px 64px -34px rgba(15,61,46,.45); overflow:hidden}
+.browser{border-radius:14px; background:var(--surface); border:1px solid var(--line); box-shadow:0 30px 56px -34px rgba(15,61,46,.3); overflow:hidden}
 .browser-bar{display:flex; align-items:center; gap:6px; padding:10px 14px; border-bottom:1px solid var(--line); background:#F4F9F5}
 .browser-bar i{width:10px; height:10px; border-radius:50%; background:#C3DDCC}
 .browser-bar span{margin-left:10px; padding:2px 12px; border-radius:6px; background:#E6F2EA; font-size:.78rem; color:var(--muted)}
 .browser img{display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top}
-.phone{position:absolute; right:0; bottom:0; width:27%; min-width:96px; border-radius:24px; border:6px solid #0F3D2E; background:#0F3D2E; box-shadow:0 28px 52px -22px rgba(15,61,46,.55); overflow:hidden}
+.phone{position:absolute; right:0; bottom:0; width:27%; min-width:96px; border-radius:24px; border:6px solid #0F3D2E; background:#0F3D2E; box-shadow:0 24px 44px -24px rgba(15,61,46,.35); overflow:hidden}
 .phone img{display:block; width:100%; height:auto; aspect-ratio:9/19; object-fit:cover; object-position:top; border-radius:18px} /* 24px rámeček − 6px okraj = 18px */
 @media (max-width:900px){
   .hero::after{right:auto; left:10%; top:auto; bottom:-12%; transform:none; width:120vw}
@@ -474,7 +474,7 @@ main::after{content:""; position:absolute; z-index:-1; right:-60px; top:40px; wi
 /* Tlačítka a karty při najetí */
 .btn:hover{transform:translateY(-2px)}
 .btn.main:hover svg{animation:nudge .8s ease-in-out infinite}
-.btn.main{box-shadow:0 10px 24px -14px rgba(15,61,46,.7)}
+.btn.main{box-shadow:0 8px 20px -14px rgba(15,61,46,.4)}
 .price, .work, .steps li, .why > div .ico, .socials a, .foot-social a{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
 .price:hover, .steps li:hover{transform:translateY(-4px)}
 .work:hover{transform:translateY(-4px)}
