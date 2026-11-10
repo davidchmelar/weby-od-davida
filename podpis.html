@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>E-mailový podpis | D.CH Weby od Davida</title>
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0; background:#F9FCF8; color:#0F3D2E; font-family:Arial, Helvetica, sans-serif; line-height:1.6}
+  main{max-width:720px; margin:0 auto; padding:40px 16px 64px}
+  h1{font-size:28px; margin:0 0 8px}
+  .lead{color:#46604F; margin:0 0 24px}
+  .card{background:#FFFFFF; border:1px solid #D3E6DA; border-radius:16px; padding:24px; margin-bottom:16px; overflow-x:auto}
+  .btn{display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:12px 24px; border:0; border-radius:12px; background:#0F3D2E; color:#FFFFFF; font:inherit; font-weight:bold; cursor:pointer}
+  .btn:hover{background:#166534}
+  .ok{margin-left:12px; color:#166534; font-weight:bold}
+  ol{padding-left:20px; margin:0}
+  li{margin-bottom:8px}
+  h2{font-size:20px; margin:32px 0 12px}
+  .note{color:#46604F; font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <h1>E-mailový podpis</h1>
+  <p class="lead">Klikni na tlačítko, podpis se zkopíruje. Pak ho vlož do Gmailu podle návodu.</p>
+
+  <div class="card" id="podpis">
+<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; color:#0F3D2E;">
+  <tr>
+    <td style="padding:0 16px 0 0; vertical-align:top;">
+      <a href="https://dchweby.cz" style="text-decoration:none;"><img src="https://dchweby.cz/img/podpis-ikona.png" width="64" height="64" alt="D.CH" style="display:block; width:64px; height:64px; border:0; border-radius:14px;"></a>
+    </td>
+    <td style="padding:0 0 0 16px; border-left:2px solid #A8D5BA; vertical-align:top;">
+      <div style="font-size:16px; line-height:22px; font-weight:bold; color:#0F3D2E;">David Chmelař</div>
+      <div style="font-size:13px; line-height:20px; font-weight:bold; color:#166534;">D.CH Weby od Davida · Tvorba webů pro firmy a řemeslníky</div>
+      <div style="font-size:13px; line-height:20px; padding-top:8px;">
+        <a href="https://dchweby.cz" style="color:#0F3D2E; font-weight:bold; text-decoration:none;">dchweby.cz</a>
+        <span style="color:#A8D5BA;">&nbsp;|&nbsp;</span>
+        <a href="mailto:dchweby@gmail.com" style="color:#0F3D2E; text-decoration:none;">dchweby@gmail.com</a>
+      </div>
+      <div style="font-size:13px; line-height:20px;">
+        <a href="https://www.facebook.com/dchweby" style="color:#166534; text-decoration:none;">Facebook</a>
+        <span style="color:#A8D5BA;">&nbsp;|&nbsp;</span>
+        <a href="https://www.instagram.com/dchweby/" style="color:#166534; text-decoration:none;">Instagram</a>
+        <span style="color:#A8D5BA;">&nbsp;|&nbsp;</span>
+        <a href="https://www.linkedin.com/in/dchweby" style="color:#166534; text-decoration:none;">LinkedIn</a>
+      </div>
+      <div style="font-size:12px; line-height:18px; padding-top:6px; color:#46604F;">Cena předem&nbsp;&nbsp;•&nbsp;&nbsp;Hotovo do týdne</div>
+    </td>
+  </tr>
+</table>
+  </div>
+
+  <button class="btn" type="button" id="kopirovat">Zkopírovat podpis</button><span class="ok" id="hotovo" hidden>Zkopírováno ✓</span>
+
+  <h2>Jak ho vložit do Gmailu</h2>
+  <div class="card">
+    <ol>
+      <li>Otevři Gmail na počítači, vpravo nahoře klikni na ozubené kolo a pak na <b>Zobrazit všechna nastavení</b>.</li>
+      <li>Na kartě <b>Obecné</b> sjeď dolů na <b>Podpis</b> a klikni na <b>Vytvořit nový</b>. Pojmenuj ho třeba „D.CH“.</li>
+      <li>Klikni do prázdného pole a vlož podpis (<b>Ctrl + V</b>).</li>
+      <li>Pod tím nastav <b>Pro nové e-maily</b> i <b>Při odpovědi/přeposlání</b> na „D.CH“.</li>
+      <li>Sjeď úplně dolů a klikni na <b>Uložit změny</b>.</li>
+    </ol>
+    <p class="note">Aplikace Gmail v mobilu umí jen podpis bez obrázku. Když píšeš z mobilu, nastav si v aplikaci krátký text: „David Chmelař · dchweby.cz“.</p>
+  </div>
+</main>
+<script>
+document.getElementById('kopirovat').addEventListener('click', async function () {
+  var el = document.getElementById('podpis');
+  var ok = false;
+  try {
+    if (navigator.clipboard && window.ClipboardItem) {
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([el.innerHTML], {type: 'text/html'}),
+        'text/plain': new Blob([el.innerText], {type: 'text/plain'})
+      })]);
+      ok = true;
+    }
+  } catch (e) {}
+  if (!ok) {
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    s.removeAllRanges();
+  }
+  var h = document.getElementById('hotovo');
+  h.textContent = ok ? 'Zkopírováno ✓' : 'Označ podpis myší a zmáčkni Ctrl + C';
+  h.hidden = false;
+});
+</script>
+</body>
+</html>
